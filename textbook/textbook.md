@@ -1,10 +1,8 @@
 # 🧠 THE ULTIMATE MACHINE LEARNING GUIDE
 ## From Zero to Hero: A Complete Reference Manual
-
-> **Version:** 2025 Edition  
-> **Last Updated:** January 2025  
+  
 > **Skill Level:** Beginner → Intermediate → Expert  
-> **Prerequisites:** Python knowledge (you got this!)
+> **Prerequisites:** Python knowledge
 
 ---
 
