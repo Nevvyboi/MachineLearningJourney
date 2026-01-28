@@ -145,20 +145,6 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install numpy pandas scikit-learn torch matplotlib
 ```
 
----
-
-## 🤝 Contributing
-
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](http://makeapullrequest.com)
-
-1. 🍴 Fork the repo
-2. 🌿 Create a branch (`git checkout -b feature/amazing`)
-3. ✅ Commit changes (`git commit -m 'Add feature'`)
-4. 📤 Push (`git push origin feature/amazing`)
-5. 🔀 Open a Pull Request
-
----
-
 ## 📜 License
 
 MIT License -> see [LICENSE](LICENSE) for details.
