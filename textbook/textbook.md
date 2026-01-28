@@ -1,7 +1,3 @@
-# THE COMPLETE MACHINE LEARNING TEXTBOOK
-
-## From Zero to Production-Ready | 2025 Edition
-
 ---
 
 ```
