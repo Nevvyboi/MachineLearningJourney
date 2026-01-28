@@ -270,74 +270,20 @@ Three factors converged to enable the deep learning revolution:
 - Transformers: Parallelizable attention
 
 
-ML IS EVERYWHERE: Real-World Applications
+### ML Is Everywhere: Real-World Applications
 
-HEALTHCARE
-├── Disease diagnosis from medical images
-├── Drug discovery and development
-├── Personalized treatment recommendations
-├── Predicting patient outcomes
-├── Analyzing genomic data
-└── Early detection of outbreaks
+| Industry | Applications |
+|:---------|:-------------|
+| 🏥 **Healthcare** | Disease diagnosis from images • Drug discovery • Personalized treatment • Patient outcome prediction • Genomic analysis • Outbreak detection |
+| 💰 **Finance** | Fraud detection • Credit scoring • Algorithmic trading • Risk assessment • Churn prediction • Anti-money laundering |
+| 💻 **Technology** | Search engines • Recommendations (Netflix, Spotify) • Virtual assistants • Email filtering • Translation • Code completion |
+| 🚗 **Transportation** | Self-driving vehicles • Route optimization • Demand prediction • Traffic prediction • Predictive maintenance • Drones |
+| 🛒 **Retail** | Demand forecasting • Inventory optimization • Dynamic pricing • Customer segmentation • Visual search • Chatbots |
+| 🎬 **Entertainment** | Content recommendation • Content generation • Game AI • Music composition • Video enhancement • Deepfakes |
+| 🔬 **Science** | Climate modeling • Protein folding (AlphaFold) • Particle physics • Astronomy • Materials science • Earthquake prediction |
+| 🔒 **Security** | Intrusion detection • Malware classification • Facial recognition • Biometric auth • Threat intelligence |
 
-FINANCE
-├── Fraud detection
-├── Credit scoring
-├── Algorithmic trading
-├── Risk assessment
-├── Customer churn prediction
-└── Anti-money laundering
-
-TECHNOLOGY
-├── Search engines (Google, Bing)
-├── Recommendation systems (Netflix, Spotify, Amazon)
-├── Virtual assistants (Siri, Alexa, Google Assistant)
-├── Email filtering
-├── Translation services
-└── Code completion (GitHub Copilot)
-
-TRANSPORTATION
-├── Self-driving vehicles
-├── Route optimization
-├── Demand prediction (Uber, Lyft)
-├── Traffic prediction
-├── Predictive maintenance
-└── Autonomous drones
-
-RETAIL
-├── Demand forecasting
-├── Inventory optimization
-├── Price optimization
-├── Customer segmentation
-├── Visual search
-└── Chatbots and customer service
-
-ENTERTAINMENT
-├── Content recommendation
-├── Content generation
-├── Game AI
-├── Music composition
-├── Video enhancement
-└── Deepfakes (for better or worse)
-
-SCIENCE
-├── Climate modeling
-├── Protein structure prediction (AlphaFold)
-├── Particle physics analysis
-├── Astronomical discovery
-├── Materials science
-└── Earthquake prediction
-
-SECURITY
-├── Intrusion detection
-├── Malware classification
-├── Facial recognition
-├── Surveillance systems
-├── Biometric authentication
-└── Threat intelligence
-
-
-THE ECONOMIC IMPACT
+### The Economic Impact
 
 According to various research reports:
 
@@ -353,121 +299,55 @@ Job market implications:
 • Every industry seeking ML expertise
 
 
-# 1.4 TYPES OF MACHINE LEARNING
+## 1.4 Types of Machine Learning
 
-TYPES OF MACHINE LEARNING
+Machine Learning algorithms are categorized by how they learn:
 
-Machine Learning algorithms are typically categorized by how they learn:
+### The Main Paradigms
 
-                        ┌─────────────────────────┐
-                        │    MACHINE LEARNING     │
-                        └───────────┬─────────────┘
-                                    │
-        ┌───────────────────────────┼───────────────────────────┐
-        │                           │                           │
-        ▼                           ▼                           ▼
-┌───────────────┐         ┌───────────────┐         ┌───────────────┐
-│  SUPERVISED   │         │ UNSUPERVISED  │         │REINFORCEMENT  │
-│   LEARNING    │         │   LEARNING    │         │   LEARNING    │
-└───────┬───────┘         └───────┬───────┘         └───────┬───────┘
-        │                         │                         │
-        │                         │                         │
-   Has labels              No labels                 Learn from
-   (answers)               (no answers)              rewards/penalties
-        │                         │                         │
-        ▼                         ▼                         ▼
- • Classification          • Clustering              • Game playing
- • Regression              • Dim. reduction          • Robotics
-                           • Anomaly detection       • Resource mgmt
+| Type | Description | Has Labels? | Examples |
+|:-----|:------------|:-----------:|:---------|
+| 🎯 **Supervised** | Learn from labeled examples | ✅ Yes | Classification, Regression |
+| 🔍 **Unsupervised** | Find patterns in unlabeled data | ❌ No | Clustering, Dimensionality Reduction |
+| 🎮 **Reinforcement** | Learn from rewards/penalties | Feedback | Game AI, Robotics |
+| 🔄 **Self-Supervised** | Create labels from data itself | Auto-generated | BERT, GPT pretraining |
+| 🔀 **Semi-Supervised** | Mix of labeled + unlabeled | Partial | When labeling is expensive |
 
+---
 
-Additional paradigms:
-├── Self-Supervised Learning: Create labels from data itself
-├── Semi-Supervised Learning: Some labels, mostly unlabeled
-└── Transfer Learning: Apply knowledge from one task to another
+### 1.4.1 Supervised Learning
 
+> **Definition:** Learning from labeled examples where both inputs (X) and desired outputs (y) are provided.
 
-# 1.4.1 SUPERVISED LEARNING - Detailed Explanation
+**The Analogy:** Like learning with a teacher who gives you practice problems AND the answer key. You learn patterns to solve NEW problems.
 
-SUPERVISED LEARNING
+**How It Works:**
 
-Definition: Learning from labeled examples where both inputs (X) and 
-desired outputs (y) are provided.
+| Step | Action | Example |
+|:----:|:-------|:--------|
+| 1 | Collect labeled data | House features → Prices |
+| 2 | Train model | `model.fit(X_train, y_train)` |
+| 3 | Predict new data | `model.predict(new_house)` |
 
-THE ANALOGY:
-Supervised learning is like learning with a teacher who gives you:
-• Practice problems (inputs)
-• Answer key (labels)
-You learn the patterns and can solve NEW problems.
+**Two Main Tasks:**
 
+| Task | Output | Examples |
+|:-----|:-------|:---------|
+| **Classification** | Discrete categories | Spam/Not Spam, Cat/Dog, Fraud/Legit |
+| **Regression** | Continuous numbers | House price, Temperature, Stock price |
 
-HOW IT WORKS:
+**Common Algorithms:**
 
-Step 1: Collect labeled data
-        ┌────────────────────────────────────────────────────┐
-        │  Features (X)              │  Label (y)            │
-        ├────────────────────────────┼───────────────────────┤
-        │  [3 bedrooms, 1500 sqft]   │  $300,000             │
-        │  [2 bedrooms, 1000 sqft]   │  $200,000             │
-        │  [4 bedrooms, 2000 sqft]   │  $450,000             │
-        │  ...                       │  ...                  │
-        └────────────────────────────┴───────────────────────┘
+| Classification | Regression |
+|:---------------|:-----------|
+| Logistic Regression | Linear Regression |
+| Decision Trees | Polynomial Regression |
+| Random Forests | Random Forests |
+| XGBoost, LightGBM | Gradient Boosting |
+| SVM, KNN, Naive Bayes | SVR, Neural Networks |
+| Neural Networks | |
 
-Step 2: Train a model
-        model.fit(X_train, y_train)
-        
-        The model finds patterns:
-        "Each bedroom adds ~$50K, each sqft adds ~$100"
-
-Step 3: Predict on new data
-        new_house = [3 bedrooms, 1800 sqft]
-        price = model.predict(new_house)  # $380,000
-
-
-TWO MAIN TASKS:
-
-1. CLASSIFICATION: Predict a category
-   
-   Examples:
-   • Email → Spam or Not Spam
-   • Image → Cat, Dog, or Bird
-   • Transaction → Fraudulent or Legitimate
-   • Patient symptoms → Disease diagnosis
-   
-   Output: Discrete class labels
-
-2. REGRESSION: Predict a continuous number
-   
-   Examples:
-   • House features → Price
-   • Student data → Test score
-   • Weather data → Temperature tomorrow
-   • Customer data → Lifetime value
-   
-   Output: Continuous values
-
-
-COMMON SUPERVISED LEARNING ALGORITHMS:
-
-For Classification:
-├── Logistic Regression (simple baseline)
-├── Decision Trees
-├── Random Forests
-├── Gradient Boosting (XGBoost, LightGBM)
-├── Support Vector Machines
-├── K-Nearest Neighbors
-├── Naive Bayes
-└── Neural Networks
-
-For Regression:
-├── Linear Regression (simple baseline)
-├── Polynomial Regression
-├── Decision Trees
-├── Random Forests
-├── Gradient Boosting
-├── Support Vector Regression
-└── Neural Networks
-
+```python
 # EXAMPLE 1.2: Supervised Learning - Classification
 
 def supervised_classification_example():
@@ -748,96 +628,30 @@ def supervised_regression_example():
         print(f"  Predicted Price: ${pred:,.0f}")
 
 
-# 1.4.2 UNSUPERVISED LEARNING - Detailed Explanation
+### 1.4.2 Unsupervised Learning
 
-UNSUPERVISED LEARNING
+> **Definition:** Learning patterns from data WITHOUT labeled examples. The algorithm must discover structure on its own.
 
-Definition: Learning patterns from data WITHOUT labeled examples.
-The algorithm must discover structure on its own.
+**The Analogy:** Like exploring a new city without a map - you discover patterns yourself: "this area has restaurants", "this is residential".
 
-THE ANALOGY:
-Unsupervised learning is like exploring a new city without a map:
-• No one tells you what the neighborhoods are
-• You discover patterns: "this area has restaurants", "this is residential"
-• You group things together based on similarity
+**Supervised vs Unsupervised:**
 
+| Aspect | Supervised | Unsupervised |
+|:-------|:-----------|:-------------|
+| Input | Data + Labels | Data only |
+| Goal | Predict labels for new data | Discover natural patterns |
+| Example | Predict if customer will churn | Find customer segments |
 
-HOW IT DIFFERS FROM SUPERVISED:
+**Main Tasks:**
 
-Supervised:
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  Input: Customer data + Label (churned: yes/no)                            │
-│  Goal: Predict if NEW customers will churn                                 │
-└─────────────────────────────────────────────────────────────────────────────┘
+| Task | Description | Algorithms | Applications |
+|:-----|:------------|:-----------|:-------------|
+| **Clustering** | Group similar data points | K-Means, DBSCAN, GMM | Customer segmentation, Document grouping |
+| **Dimensionality Reduction** | Reduce features, preserve info | PCA, t-SNE, UMAP | Visualization, Noise reduction |
+| **Anomaly Detection** | Find unusual data points | Isolation Forest, One-Class SVM | Fraud detection, Defect detection |
+| **Association Rules** | Find variable relationships | Apriori, FP-Growth | Market basket analysis |
 
-Unsupervised:
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  Input: Customer data only (NO labels)                                     │
-│  Goal: Discover natural groupings of customers                             │
-│        (maybe: "budget", "premium", "at-risk" segments)                    │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-
-MAIN TASKS IN UNSUPERVISED LEARNING:
-
-1. CLUSTERING
-   Finding groups of similar data points
-   
-   Applications:
-   • Customer segmentation
-   • Document grouping
-   • Image compression
-   • Anomaly detection
-   • Gene expression analysis
-   
-   Algorithms:
-   • K-Means
-   • Hierarchical clustering
-   • DBSCAN
-   • Gaussian Mixture Models
-
-2. DIMENSIONALITY REDUCTION
-   Reducing the number of features while preserving information
-   
-   Applications:
-   • Visualization of high-dimensional data
-   • Noise reduction
-   • Feature extraction
-   • Data compression
-   • Speeding up other algorithms
-   
-   Algorithms:
-   • PCA (Principal Component Analysis)
-   • t-SNE
-   • UMAP
-   • Autoencoders
-
-3. ANOMALY DETECTION
-   Finding unusual data points
-   
-   Applications:
-   • Fraud detection
-   • Network intrusion detection
-   • Manufacturing defect detection
-   • Medical diagnosis
-   
-   Algorithms:
-   • Isolation Forest
-   • One-Class SVM
-   • Local Outlier Factor
-   • Autoencoders
-
-4. ASSOCIATION RULE LEARNING
-   Finding relationships between variables
-   
-   Applications:
-   • Market basket analysis ("customers who bought X also bought Y")
-   • Recommendation systems
-   
-   Algorithms:
-   • Apriori
-   • FP-Growth
-
+```python
 # EXAMPLE 1.4: Unsupervised Learning - Clustering
 
 def unsupervised_clustering_example():
@@ -952,102 +766,49 @@ def unsupervised_clustering_example():
     return kmeans, scaler, cluster_labels
 
 
-# 1.4.3 REINFORCEMENT LEARNING - Detailed Explanation
+### 1.4.3 Reinforcement Learning
 
-REINFORCEMENT LEARNING
+> **Definition:** Learning through trial and error by receiving rewards or penalties for actions taken in an environment.
 
-Definition: Learning through trial and error by receiving rewards or penalties
-for actions taken in an environment.
+**The Analogy:** Like training a dog - perform action → receive reward/penalty → learn which actions lead to treats!
 
-THE ANALOGY:
-Reinforcement learning is like training a dog:
-• Dog performs action (sits, jumps, barks)
-• You give reward (treat) or penalty (no treat, "bad dog")
-• Dog learns which actions lead to rewards
-• Eventually, dog learns complex behaviors
+**The RL Framework:**
 
+| Component | Description |
+|:----------|:------------|
+| **Agent** | The learner/decision-maker |
+| **Environment** | The world the agent interacts with |
+| **State (s)** | Current situation |
+| **Action (a)** | What the agent does |
+| **Reward (r)** | Feedback signal (+/-) |
+| **Policy (π)** | Strategy mapping states → actions |
 
-THE RL FRAMEWORK:
+**Key Concepts:**
 
-    ┌─────────────────────────────────────────────────────────────────────────┐
-    │                                                                         │
-    │    ┌─────────┐         action (a)        ┌─────────────────┐           │
-    │    │         │ ─────────────────────────▶│                 │           │
-    │    │  AGENT  │                           │   ENVIRONMENT   │           │
-    │    │         │ ◀─────────────────────────│                 │           │
-    │    └─────────┘    state (s), reward (r)  └─────────────────┘           │
-    │                                                                         │
-    └─────────────────────────────────────────────────────────────────────────┘
+| Concept | Description |
+|:--------|:------------|
+| **Policy (π)** | "When in state s, take action a" |
+| **Value Function (V)** | "How good is it to be in state s?" |
+| **Q-Function (Q)** | "How good is action a in state s?" |
+| **Exploration vs Exploitation** | Try new things vs use what works |
 
-    Agent: The learner/decision-maker
-    Environment: The world the agent interacts with
-    State (s): Current situation
-    Action (a): What the agent does
-    Reward (r): Feedback signal (positive or negative)
-    
-    Goal: Learn a POLICY (strategy) that maximizes cumulative reward
+**Algorithms:**
 
+| Type | Algorithms |
+|:-----|:-----------|
+| **Model-Free** | Q-Learning, SARSA, Policy Gradient, Actor-Critic, PPO |
+| **Model-Based** | Learn environment model, then plan |
 
-KEY CONCEPTS:
+**Applications:**
 
-1. POLICY (π)
-   A strategy that maps states to actions
-   π(s) → a
-   "When in state s, take action a"
+| Domain | Examples |
+|:-------|:---------|
+| 🎮 Games | AlphaGo, OpenAI Five (Dota 2), Atari, Chess |
+| 🤖 Robotics | Locomotion, Manipulation, Autonomous vehicles |
+| 💼 Business | Ad placement, Recommendations, Dynamic pricing |
+| 🔬 Science | Molecule design, Chip design (AlphaChip) |
 
-2. VALUE FUNCTION (V)
-   Expected cumulative reward from a state
-   "How good is it to be in state s?"
-
-3. Q-FUNCTION (Q)
-   Expected cumulative reward from taking action a in state s
-   "How good is it to take action a in state s?"
-
-4. EXPLORATION vs EXPLOITATION
-   • Exploration: Try new actions to discover better strategies
-   • Exploitation: Use known good actions to maximize reward
-   • Balance is crucial!
-
-
-RL ALGORITHMS:
-
-Model-Free:
-├── Q-Learning: Learn Q-values for state-action pairs
-├── SARSA: On-policy variant of Q-learning
-├── Policy Gradient: Directly optimize the policy
-├── Actor-Critic: Combine value and policy methods
-└── PPO/TRPO: Stable policy optimization
-
-Model-Based:
-├── Learn a model of the environment
-├── Plan using the learned model
-└── More sample-efficient but harder to implement
-
-
-APPLICATIONS:
-
-Games:
-• AlphaGo (Go)
-• OpenAI Five (Dota 2)
-• Atari games
-• Chess, Poker
-
-Robotics:
-• Robot locomotion
-• Manipulation tasks
-• Autonomous vehicles
-
-Business:
-• Ad placement
-• Recommendation systems
-• Dynamic pricing
-• Resource allocation
-
-Science:
-• Molecule design
-• Experiment optimization
-• Chip design (AlphaChip)
-
+```python
 # EXAMPLE 1.5: Simple Reinforcement Learning
 
 def simple_rl_example():
@@ -1212,118 +973,42 @@ def simple_rl_example():
     return Q
 
 
-# 1.4.4 SELF-SUPERVISED LEARNING - Detailed Explanation
+### 1.4.4 Self-Supervised Learning
 
-SELF-SUPERVISED LEARNING
+> **Definition:** A form of learning where the data provides its own labels. The algorithm creates supervisory signals from the input data itself.
 
-Definition: A form of unsupervised learning where the data provides its own
-labels. The algorithm creates supervisory signals from the input data itself.
+**The Analogy:** Like learning language by reading - no one labels each word, you learn patterns from context. "The cat sat on the ___" → you can guess "mat"!
 
-THE ANALOGY:
-Self-supervised learning is like learning a language by reading books:
-• No one labels each word with its meaning
-• You learn patterns from context
-• "The cat sat on the ___" - you can guess "mat" or "floor"
-• The surrounding words supervise the learning
+**Why It's Revolutionary:**
 
+| Traditional Supervised | Self-Supervised |
+|:-----------------------|:----------------|
+| Needs labeled data | Uses unlabeled data |
+| Expensive, time-consuming | Abundant, free |
+| Limited scale | Scales to billions |
+| Requires domain experts | No manual labeling |
 
-WHY IT'S REVOLUTIONARY:
+> 💡 This is how **GPT, BERT, and most modern AI** systems are trained!
 
-Traditional supervised learning needs LABELED data:
-• Expensive to create
-• Time-consuming
-• Limited in scale
-• Requires domain experts
+**Common Pretext Tasks:**
 
-Self-supervised learning uses UNLABELED data:
-• Abundant (internet has endless text, images, audio)
-• Free
-• Scales to billions of examples
-• No manual labeling needed
+| Domain | Task | Description |
+|:-------|:-----|:------------|
+| 📝 Text | Masked LM (BERT) | Predict masked words: "The [MASK] sat on mat" → "cat" |
+| 📝 Text | Next Token (GPT) | Predict next word: "The cat sat on the" → "mat" |
+| 🖼️ Images | Contrastive (SimCLR) | Learn that augmented views of same image are similar |
+| 🖼️ Images | Masked Image (MAE) | Reconstruct masked image patches |
 
-This is how GPT, BERT, and most modern AI systems are trained!
+**The Pretrain-Finetune Paradigm:**
 
+| Phase | Data | Compute | Purpose |
+|:------|:-----|:--------|:--------|
+| **1. Pretrain** | Massive unlabeled (billions) | Huge (done once) | Learn general representations |
+| **2. Finetune** | Small labeled (thousands) | Small | Adapt to specific task |
 
-COMMON PRETEXT TASKS:
+**Why It Works:** To predict masked words well, a model must learn grammar, semantics, world knowledge, and reasoning - these transfer to downstream tasks!
 
-For Text (Language Models):
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ 1. Masked Language Modeling (BERT-style)                                    │
-│    Input:  "The [MASK] sat on the mat"                                     │
-│    Target: "cat"                                                           │
-│    The model learns to predict masked words from context                   │
-│                                                                             │
-│ 2. Next Token Prediction (GPT-style)                                       │
-│    Input:  "The cat sat on the"                                            │
-│    Target: "mat"                                                           │
-│    The model learns to predict what comes next                             │
-│                                                                             │
-│ 3. Next Sentence Prediction (BERT)                                         │
-│    Given two sentences, predict if sentence B follows sentence A           │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-For Images:
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ 1. Contrastive Learning (SimCLR, MoCo)                                     │
-│    - Create two augmented views of same image                              │
-│    - Train model to recognize they're the same                             │
-│    - Push representations of same image together                           │
-│    - Push representations of different images apart                        │
-│                                                                             │
-│ 2. Masked Image Modeling (MAE)                                             │
-│    - Mask random patches of an image                                       │
-│    - Train model to reconstruct the masked patches                         │
-│                                                                             │
-│ 3. Rotation Prediction                                                      │
-│    - Rotate image by 0°, 90°, 180°, or 270°                               │
-│    - Train model to predict the rotation                                   │
-│                                                                             │
-│ 4. Jigsaw Puzzles                                                          │
-│    - Divide image into patches and shuffle                                 │
-│    - Train model to solve the puzzle                                       │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-
-THE PRETRAIN-FINETUNE PARADIGM:
-
-Phase 1: Pretraining (Self-supervised)
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                                                                             │
-│  Train on MASSIVE unlabeled data                                           │
-│  (billions of web pages, images, etc.)                                     │
-│                                                                             │
-│  Learn general representations of language/images/etc.                     │
-│  This requires huge compute but only done once                             │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-Phase 2: Finetuning (Supervised)
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                                                                             │
-│  Take pretrained model                                                      │
-│  Train on small labeled dataset for specific task                          │
-│                                                                             │
-│  Examples:                                                                  │
-│  - Sentiment classification (thousands of examples)                        │
-│  - Named entity recognition                                                │
-│  - Question answering                                                       │
-│                                                                             │
-│  Much less compute, much less data needed                                  │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-
-KEY INSIGHT: Why This Works
-
-To predict masked words well, a model must learn:
-• Grammar and syntax
-• Word meanings and relationships
-• World knowledge
-• Reasoning abilities
-
-These learned representations transfer to many downstream tasks!
-
+```python
 # EXAMPLE 1.6: Self-Supervised Learning Concept
 
 def self_supervised_concept_example():
