@@ -11,743 +11,6 @@
 
 </div>
 
-# Part IV: Supervised Learning Algorithms
-
----
-
-## Chapter 4: Linear Regression
-
-### 4.1 Simple Linear Regression
-
-Linear regression is the foundation of predictive modeling - understanding it deeply unlocks
-intuition for nearly every other algorithm.
-
-#### 4.1.1 The Model
-
-Simple linear regression models the relationship between a single feature x and target y:
-
-```
-y = β₀ + β₁x + ε
-
-Where:
-- β₀ = intercept (y-value when x = 0)
-- β₁ = slope (change in y per unit change in x)
-- ε = error term (captures what the model can't explain)
-```
-
-**Assumptions of Linear Regression:**
-1. Linearity: The relationship between X and Y is linear
-2. Independence: Observations are independent of each other
-3. Homoscedasticity: Constant variance of residuals
-4. Normality: Residuals are normally distributed
-5. No multicollinearity: Features are not highly correlated (for multiple regression)
-
-#### 4.1.2 Finding the Best Line: Ordinary Least Squares
-
-The goal is to find β₀ and β₁ that minimize the sum of squared residuals:
-
-```
-RSS = Σᵢ(yᵢ - ŷᵢ)² = Σᵢ(yᵢ - β₀ - β₁xᵢ)²
-```
-
-**Deriving the Closed-Form Solution:**
-
-Taking partial derivatives and setting to zero:
-
-```
-∂RSS/∂β₀ = -2Σᵢ(yᵢ - β₀ - β₁xᵢ) = 0
-∂RSS/∂β₁ = -2Σᵢxᵢ(yᵢ - β₀ - β₁xᵢ) = 0
-```
-
-Solving these normal equations:
-
-```
-β₁ = Σᵢ(xᵢ - x̄)(yᵢ - ȳ) / Σᵢ(xᵢ - x̄)²
-   = Cov(x, y) / Var(x)
-
-β₀ = ȳ - β₁x̄
-```
-
-**Implementation from Scratch:**
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-class SimpleLinearRegression:
-    """
-    Simple Linear Regression using Ordinary Least Squares.
-    
-    This implementation follows the mathematical derivation exactly,
-    providing transparency into how linear regression works.
-    """
-    
-    def __init__(self):
-        self.beta_0 = None  # Intercept
-        self.beta_1 = None  # Slope
-        self.x_mean = None
-        self.y_mean = None
-        
-    def fit(self, X, y):
-        """
-        Fit the linear regression model.
-        
-        Parameters:
-        -----------
-        X : array-like, shape (n_samples,)
-            Training features
-        y : array-like, shape (n_samples,)
-            Target values
-        """
-        X = np.array(X).flatten()
-        y = np.array(y).flatten()
-        
-        n = len(X)
-        
-        # Calculate means
-        self.x_mean = np.mean(X)
-        self.y_mean = np.mean(y)
-        
-        # Calculate slope using the formula
-        # β₁ = Σ(xᵢ - x̄)(yᵢ - ȳ) / Σ(xᵢ - x̄)²
-        numerator = np.sum((X - self.x_mean) * (y - self.y_mean))
-        denominator = np.sum((X - self.x_mean) ** 2)
-        
-        self.beta_1 = numerator / denominator
-        
-        # Calculate intercept: β₀ = ȳ - β₁x̄
-        self.beta_0 = self.y_mean - self.beta_1 * self.x_mean
-        
-        return self
-    
-    def predict(self, X):
-        """Make predictions using the fitted model."""
-        X = np.array(X).flatten()
-        return self.beta_0 + self.beta_1 * X
-    
-    def score(self, X, y):
-        """Calculate R² score."""
-        y_pred = self.predict(X)
-        y = np.array(y).flatten()
-        
-        ss_res = np.sum((y - y_pred) ** 2)  # Residual sum of squares
-        ss_tot = np.sum((y - np.mean(y)) ** 2)  # Total sum of squares
-        
-        return 1 - (ss_res / ss_tot)
-    
-    def get_coefficients(self):
-        """Return model coefficients."""
-        return {
-            'intercept': self.beta_0,
-            'slope': self.beta_1
-        }
-
-
-# Example: Predicting house prices based on square footage
-np.random.seed(42)
-
-# Generate synthetic data
-# True relationship: price = 50000 + 100 * sqft + noise
-n_samples = 100
-sqft = np.random.uniform(500, 3000, n_samples)
-noise = np.random.normal(0, 20000, n_samples)
-price = 50000 + 100 * sqft + noise
-
-# Fit our model
-model = SimpleLinearRegression()
-model.fit(sqft, price)
-
-# Results
-print("Simple Linear Regression Results")
-print("=" * 50)
-print(f"Estimated intercept (β₀): ${model.beta_0:,.2f}")
-print(f"Estimated slope (β₁): ${model.beta_1:.2f} per sqft")
-print(f"R² Score: {model.score(sqft, price):.4f}")
-print()
-print("True values: β₀ = $50,000, β₁ = $100 per sqft")
-
-# Interpretation
-print("\nInterpretation:")
-print(f"- Base price (0 sqft): ${model.beta_0:,.2f}")
-print(f"- Each additional sqft adds ${model.beta_1:.2f} to price")
-print(f"- A 2000 sqft house: ${model.predict([2000])[0]:,.2f}")
-
-# Visualization
-plt.figure(figsize=(10, 6))
-plt.scatter(sqft, price, alpha=0.6, label='Actual data')
-plt.plot(sqft, model.predict(sqft), color='red', linewidth=2, 
-         label=f'Fitted line: y = {model.beta_0:.0f} + {model.beta_1:.2f}x')
-plt.xlabel('Square Footage')
-plt.ylabel('Price ($)')
-plt.title('House Price vs Square Footage')
-plt.legend()
-plt.grid(True, alpha=0.3)
-plt.tight_layout()
-plt.savefig('simple_linear_regression.png', dpi=150)
-plt.show()
-```
-
-Output:
-```
-Simple Linear Regression Results
-==================================================
-Estimated intercept (β₀): $48,567.23
-Estimated slope (β₁): $100.89 per sqft
-R² Score: 0.9142
-
-True values: β₀ = $50,000, β₁ = $100 per sqft
-
-Interpretation:
-- Base price (0 sqft): $48,567.23
-- Each additional sqft adds $100.89 to price
-- A 2000 sqft house: $250,347.23
-```
-
-### 4.2 Multiple Linear Regression
-
-When we have multiple features, the model becomes:
-
-```
-y = β₀ + β₁x₁ + β₂x₂ + ... + βₚxₚ + ε
-
-Or in matrix form:
-y = Xβ + ε
-
-Where:
-- X is an n × (p+1) matrix (including column of 1s for intercept)
-- β is a (p+1) × 1 vector of coefficients
-- y is an n × 1 vector of targets
-```
-
-#### 4.2.1 The Normal Equation
-
-The closed-form solution for multiple linear regression:
-
-```
-β = (XᵀX)⁻¹Xᵀy
-```
-
-**Derivation:**
-
-Starting from the loss function:
-```
-L(β) = ||y - Xβ||² = (y - Xβ)ᵀ(y - Xβ)
-     = yᵀy - 2βᵀXᵀy + βᵀXᵀXβ
-```
-
-Taking the derivative with respect to β:
-```
-∂L/∂β = -2Xᵀy + 2XᵀXβ = 0
-XᵀXβ = Xᵀy
-β = (XᵀX)⁻¹Xᵀy
-```
-
-**Implementation:**
-
-```python
-import numpy as np
-from numpy.linalg import inv, pinv
-
-class MultipleLinearRegression:
-    """
-    Multiple Linear Regression using the Normal Equation.
-    
-    Handles multiple features and provides comprehensive diagnostics.
-    """
-    
-    def __init__(self, fit_intercept=True):
-        self.fit_intercept = fit_intercept
-        self.coefficients = None
-        self.intercept = None
-        self.feature_names = None
-        
-    def fit(self, X, y, feature_names=None):
-        """
-        Fit the multiple linear regression model.
-        
-        Parameters:
-        -----------
-        X : array-like, shape (n_samples, n_features)
-            Training features
-        y : array-like, shape (n_samples,)
-            Target values
-        feature_names : list, optional
-            Names for features
-        """
-        X = np.array(X)
-        y = np.array(y).reshape(-1, 1)
-        
-        n_samples, n_features = X.shape
-        self.feature_names = feature_names or [f'x{i}' for i in range(n_features)]
-        
-        # Add intercept column if needed
-        if self.fit_intercept:
-            X_design = np.column_stack([np.ones(n_samples), X])
-        else:
-            X_design = X
-        
-        # Normal equation: β = (XᵀX)⁻¹Xᵀy
-        # Using pseudo-inverse for numerical stability
-        XtX = X_design.T @ X_design
-        Xty = X_design.T @ y
-        
-        try:
-            beta = inv(XtX) @ Xty
-        except np.linalg.LinAlgError:
-            # Use pseudo-inverse if matrix is singular
-            beta = pinv(X_design) @ y
-        
-        if self.fit_intercept:
-            self.intercept = beta[0, 0]
-            self.coefficients = beta[1:, 0]
-        else:
-            self.intercept = 0
-            self.coefficients = beta[:, 0]
-        
-        # Store for diagnostics
-        self._X = X
-        self._y = y.flatten()
-        self._X_design = X_design
-        
-        return self
-    
-    def predict(self, X):
-        """Make predictions."""
-        X = np.array(X)
-        return self.intercept + X @ self.coefficients
-    
-    def score(self, X, y):
-        """Calculate R² score."""
-        y_pred = self.predict(X)
-        ss_res = np.sum((y - y_pred) ** 2)
-        ss_tot = np.sum((y - np.mean(y)) ** 2)
-        return 1 - (ss_res / ss_tot)
-    
-    def adjusted_r2(self, X, y):
-        """
-        Calculate Adjusted R².
-        
-        Adjusted R² penalizes adding features that don't improve the model.
-        """
-        n = len(y)
-        p = X.shape[1]  # number of features
-        r2 = self.score(X, y)
-        return 1 - (1 - r2) * (n - 1) / (n - p - 1)
-    
-    def get_residuals(self, X, y):
-        """Calculate residuals."""
-        return y - self.predict(X)
-    
-    def standard_errors(self):
-        """
-        Calculate standard errors of coefficients.
-        
-        SE(βⱼ) = √(σ² * (XᵀX)⁻¹ⱼⱼ)
-        """
-        y_pred = self.predict(self._X)
-        residuals = self._y - y_pred
-        n, p = self._X.shape
-        
-        # Estimate of error variance
-        mse = np.sum(residuals ** 2) / (n - p - 1)
-        
-        # Variance-covariance matrix of coefficients
-        XtX_inv = inv(self._X_design.T @ self._X_design)
-        
-        # Standard errors are square roots of diagonal elements
-        var_beta = mse * np.diag(XtX_inv)
-        se = np.sqrt(var_beta)
-        
-        return se[0], se[1:]  # intercept SE, coefficient SEs
-    
-    def t_statistics(self):
-        """Calculate t-statistics for hypothesis testing."""
-        se_intercept, se_coef = self.standard_errors()
-        
-        t_intercept = self.intercept / se_intercept
-        t_coef = self.coefficients / se_coef
-        
-        return t_intercept, t_coef
-    
-    def summary(self, X, y):
-        """Print a comprehensive model summary."""
-        from scipy import stats
-        
-        n, p = X.shape
-        r2 = self.score(X, y)
-        adj_r2 = self.adjusted_r2(X, y)
-        
-        se_intercept, se_coef = self.standard_errors()
-        t_intercept, t_coef = self.t_statistics()
-        
-        # Calculate p-values (two-tailed)
-        df = n - p - 1
-        p_intercept = 2 * (1 - stats.t.cdf(abs(t_intercept), df))
-        p_coef = 2 * (1 - stats.t.cdf(np.abs(t_coef), df))
-        
-        print("=" * 70)
-        print("MULTIPLE LINEAR REGRESSION SUMMARY")
-        print("=" * 70)
-        print(f"Number of observations: {n}")
-        print(f"Number of features: {p}")
-        print(f"R-squared: {r2:.4f}")
-        print(f"Adjusted R-squared: {adj_r2:.4f}")
-        print()
-        print("-" * 70)
-        print(f"{'Variable':<15} {'Coefficient':>12} {'Std Error':>12} {'t-stat':>10} {'p-value':>10}")
-        print("-" * 70)
-        
-        # Intercept
-        sig = '***' if p_intercept < 0.001 else '**' if p_intercept < 0.01 else '*' if p_intercept < 0.05 else ''
-        print(f"{'Intercept':<15} {self.intercept:>12.4f} {se_intercept:>12.4f} {t_intercept:>10.3f} {p_intercept:>10.4f} {sig}")
-        
-        # Coefficients
-        for i, name in enumerate(self.feature_names):
-            sig = '***' if p_coef[i] < 0.001 else '**' if p_coef[i] < 0.01 else '*' if p_coef[i] < 0.05 else ''
-            print(f"{name:<15} {self.coefficients[i]:>12.4f} {se_coef[i]:>12.4f} {t_coef[i]:>10.3f} {p_coef[i]:>10.4f} {sig}")
-        
-        print("-" * 70)
-        print("Significance codes: *** p<0.001, ** p<0.01, * p<0.05")
-        print("=" * 70)
-
-
-# Example: House price with multiple features
-np.random.seed(42)
-n = 200
-
-# Features
-sqft = np.random.uniform(800, 3500, n)
-bedrooms = np.random.randint(1, 6, n)
-age = np.random.uniform(0, 50, n)
-distance_downtown = np.random.uniform(1, 30, n)
-
-# True relationship
-# price = 30000 + 80*sqft + 15000*bedrooms - 500*age - 2000*distance + noise
-noise = np.random.normal(0, 25000, n)
-price = (30000 + 
-         80 * sqft + 
-         15000 * bedrooms - 
-         500 * age - 
-         2000 * distance_downtown + 
-         noise)
-
-# Prepare data
-X = np.column_stack([sqft, bedrooms, age, distance_downtown])
-feature_names = ['sqft', 'bedrooms', 'age', 'distance']
-
-# Fit model
-model = MultipleLinearRegression()
-model.fit(X, price, feature_names=feature_names)
-
-# Print summary
-model.summary(X, price)
-
-# Predictions
-print("\nSample Predictions:")
-print("-" * 50)
-test_houses = [
-    [1500, 3, 10, 5],   # 1500 sqft, 3 bed, 10 years old, 5 miles from downtown
-    [2500, 4, 5, 15],   # Larger, newer, farther
-    [1000, 2, 40, 2],   # Small, old, very close
-]
-
-for house in test_houses:
-    pred = model.predict([house])[0]
-    print(f"House: {house[0]} sqft, {house[1]} beds, {house[2]} yrs old, {house[3]} mi -> ${pred:,.0f}")
-```
-
-Output:
-```
-======================================================================
-MULTIPLE LINEAR REGRESSION SUMMARY
-======================================================================
-Number of observations: 200
-Number of features: 4
-R-squared: 0.9523
-Adjusted R-squared: 0.9513
-
-----------------------------------------------------------------------
-Variable         Coefficient    Std Error     t-stat    p-value
-----------------------------------------------------------------------
-Intercept          32456.7823    8234.5612     3.943     0.0001 ***
-sqft                  79.8234       2.1456    37.202     0.0000 ***
-bedrooms           14876.3421    1523.4567     9.765     0.0000 ***
-age                  -487.2345      98.7654    -4.933     0.0000 ***
-distance           -1978.5634     345.6789    -5.724     0.0000 ***
-----------------------------------------------------------------------
-Significance codes: *** p<0.001, ** p<0.01, * p<0.05
-======================================================================
-
-Sample Predictions:
---------------------------------------------------
-House: 1500 sqft, 3 beds, 10 yrs old, 5 mi -> $192,847
-House: 2500 sqft, 4 beds, 5 yrs old, 15 mi -> $258,234
-House: 1000 sqft, 2 beds, 40 yrs old, 2 mi -> $119,456
-```
-
-### 4.3 Gradient Descent for Linear Regression
-
-While the normal equation works well for small datasets, it becomes computationally expensive
-for large datasets (O(n³) for matrix inversion). Gradient descent provides an iterative alternative.
-
-#### 4.3.1 The Algorithm
-
-```
-Repeat until convergence:
-    1. Compute predictions: ŷ = Xβ
-    2. Compute gradient: ∇L = (2/n) * Xᵀ(ŷ - y)
-    3. Update parameters: β = β - α * ∇L
-```
-
-**Three Variants:**
-
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                    GRADIENT DESCENT VARIANTS                        │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│  Batch Gradient Descent:                                           │
-│  ├── Uses ALL samples per update                                   │
-│  ├── Smooth convergence                                            │
-│  ├── Slow for large datasets                                       │
-│  └── Deterministic                                                 │
-│                                                                     │
-│  Stochastic Gradient Descent (SGD):                                │
-│  ├── Uses ONE sample per update                                    │
-│  ├── Noisy but fast                                                │
-│  ├── Can escape local minima                                       │
-│  └── May never fully converge                                      │
-│                                                                     │
-│  Mini-batch Gradient Descent:                                      │
-│  ├── Uses BATCH_SIZE samples per update                            │
-│  ├── Best of both worlds                                           │
-│  ├── Most common in practice                                       │
-│  └── Typical batch sizes: 32, 64, 128, 256                        │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-```
-
-**Implementation:**
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-class LinearRegressionGD:
-    """
-    Linear Regression using Gradient Descent.
-    
-    Supports batch, stochastic, and mini-batch gradient descent.
-    """
-    
-    def __init__(self, learning_rate=0.01, n_iterations=1000, 
-                 batch_size=None, tol=1e-6, verbose=False):
-        """
-        Parameters:
-        -----------
-        learning_rate : float
-            Step size for gradient descent
-        n_iterations : int
-            Maximum number of iterations
-        batch_size : int or None
-            None = batch GD, 1 = SGD, >1 = mini-batch
-        tol : float
-            Tolerance for convergence
-        verbose : bool
-            Print progress during training
-        """
-        self.lr = learning_rate
-        self.n_iterations = n_iterations
-        self.batch_size = batch_size
-        self.tol = tol
-        self.verbose = verbose
-        
-        self.weights = None
-        self.bias = None
-        self.loss_history = []
-        
-    def _compute_loss(self, X, y):
-        """Compute Mean Squared Error loss."""
-        predictions = X @ self.weights + self.bias
-        return np.mean((predictions - y) ** 2)
-    
-    def _compute_gradients(self, X, y):
-        """Compute gradients of the loss with respect to weights and bias."""
-        n = len(y)
-        predictions = X @ self.weights + self.bias
-        errors = predictions - y
-        
-        # Gradients
-        dw = (2 / n) * (X.T @ errors)
-        db = (2 / n) * np.sum(errors)
-        
-        return dw, db
-    
-    def fit(self, X, y):
-        """
-        Fit the model using gradient descent.
-        
-        Parameters:
-        -----------
-        X : array-like, shape (n_samples, n_features)
-        y : array-like, shape (n_samples,)
-        """
-        X = np.array(X)
-        y = np.array(y).reshape(-1)
-        
-        n_samples, n_features = X.shape
-        
-        # Initialize weights
-        self.weights = np.zeros(n_features)
-        self.bias = 0.0
-        self.loss_history = []
-        
-        # Determine batch size
-        if self.batch_size is None:
-            batch_size = n_samples  # Batch GD
-        else:
-            batch_size = min(self.batch_size, n_samples)
-        
-        # Training loop
-        for iteration in range(self.n_iterations):
-            # Shuffle data for SGD and mini-batch
-            if batch_size < n_samples:
-                indices = np.random.permutation(n_samples)
-                X_shuffled = X[indices]
-                y_shuffled = y[indices]
-            else:
-                X_shuffled = X
-                y_shuffled = y
-            
-            # Process in batches
-            for start_idx in range(0, n_samples, batch_size):
-                end_idx = min(start_idx + batch_size, n_samples)
-                X_batch = X_shuffled[start_idx:end_idx]
-                y_batch = y_shuffled[start_idx:end_idx]
-                
-                # Compute gradients
-                dw, db = self._compute_gradients(X_batch, y_batch)
-                
-                # Update parameters
-                self.weights -= self.lr * dw
-                self.bias -= self.lr * db
-            
-            # Record loss
-            loss = self._compute_loss(X, y)
-            self.loss_history.append(loss)
-            
-            # Check convergence
-            if len(self.loss_history) > 1:
-                if abs(self.loss_history[-2] - loss) < self.tol:
-                    if self.verbose:
-                        print(f"Converged at iteration {iteration}")
-                    break
-            
-            # Verbose output
-            if self.verbose and iteration % 100 == 0:
-                print(f"Iteration {iteration}: Loss = {loss:.6f}")
-        
-        return self
-    
-    def predict(self, X):
-        """Make predictions."""
-        X = np.array(X)
-        return X @ self.weights + self.bias
-    
-    def score(self, X, y):
-        """Calculate R² score."""
-        y_pred = self.predict(X)
-        ss_res = np.sum((y - y_pred) ** 2)
-        ss_tot = np.sum((y - np.mean(y)) ** 2)
-        return 1 - (ss_res / ss_tot)
-
-
-# Compare gradient descent variants
-np.random.seed(42)
-
-# Generate data
-n_samples = 1000
-X = np.random.randn(n_samples, 5)
-true_weights = np.array([3, -2, 1, 0.5, -1.5])
-y = X @ true_weights + 2 + np.random.randn(n_samples) * 0.5
-
-# Train with different methods
-methods = {
-    'Batch GD': LinearRegressionGD(learning_rate=0.1, n_iterations=500, 
-                                    batch_size=None),
-    'SGD': LinearRegressionGD(learning_rate=0.01, n_iterations=500, 
-                               batch_size=1),
-    'Mini-batch (32)': LinearRegressionGD(learning_rate=0.05, n_iterations=500, 
-                                           batch_size=32),
-}
-
-plt.figure(figsize=(12, 5))
-
-# Subplot 1: Loss curves
-plt.subplot(1, 2, 1)
-for name, model in methods.items():
-    model.fit(X, y)
-    plt.plot(model.loss_history, label=f"{name} (R²={model.score(X, y):.4f})")
-
-plt.xlabel('Iteration')
-plt.ylabel('MSE Loss')
-plt.title('Gradient Descent Convergence')
-plt.legend()
-plt.grid(True, alpha=0.3)
-plt.yscale('log')
-
-# Subplot 2: Weight comparison
-plt.subplot(1, 2, 2)
-x_pos = np.arange(len(true_weights))
-width = 0.2
-
-plt.bar(x_pos - 1.5*width, true_weights, width, label='True', alpha=0.8)
-for i, (name, model) in enumerate(methods.items()):
-    plt.bar(x_pos + (i-0.5)*width, model.weights, width, label=name, alpha=0.8)
-
-plt.xlabel('Weight Index')
-plt.ylabel('Weight Value')
-plt.title('Learned vs True Weights')
-plt.legend()
-plt.xticks(x_pos)
-plt.grid(True, alpha=0.3)
-
-plt.tight_layout()
-plt.savefig('gradient_descent_comparison.png', dpi=150)
-plt.show()
-
-# Print results
-print("\nGradient Descent Results:")
-print("=" * 60)
-print(f"True weights: {true_weights}")
-print(f"True bias: 2.0")
-print()
-for name, model in methods.items():
-    print(f"{name}:")
-    print(f"  Weights: {np.round(model.weights, 4)}")
-    print(f"  Bias: {model.bias:.4f}")
-    print(f"  R² Score: {model.score(X, y):.6f}")
-    print()
-```
-
-### 4.4 Feature Scaling for Gradient Descent
-
-Feature scaling is crucial for gradient descent to work efficiently:
-
-```
-Without scaling:
-- Features on different scales have vastly different gradients
-- Learning rate that works for one feature may be too large/small for another
-- Convergence is slow and may oscillate
-
-With scaling:
-- All features contribute equally
-- Gradient descent converges faster
-- Same learning rate works for all features
-```
-
-**Scaling Methods:**
-
 ```python
 import numpy as np
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
@@ -5672,50 +4935,966 @@ def example_transformer_encoder():
     • RLHF (Reinforcement Learning from Human Feedback)
     """)
 
+---
 
-# Run all examples
+<div align="center">
 
-if __name__ == "__main__":
-    print("\n" + "="*70)
-    print("PART III: NEURAL NETWORKS AND DEEP LEARNING")
-    print("="*70)
-    
-    # Chapter 10: Neural Network Fundamentals
-    example_perceptron()
-    print("\n")
-    example_mlp_from_scratch()
-    print("\n")
-    example_activation_functions()
-    print("\n")
-    example_forward_propagation()
-    print("\n")
-    example_backpropagation()
-    
-    # Chapter 11: Training Neural Networks
-    print("\n")
-    example_loss_functions()
-    print("\n")
-    example_optimizers()
-    print("\n")
-    example_batch_normalization()
-    print("\n")
-    example_regularization_nn()
-    
-    # Chapter 12: CNNs
-    print("\n")
-    example_cnn_basics()
-    example_cnn_architecture()
-    
-    # Chapter 13: RNNs
-    print("\n")
-    example_rnn()
-    example_sequence_classification()
-    
-    # Chapter 14: Transformers
-    print("\n")
-    example_attention()
-    example_transformer_encoder()
+[⬅️ Previous: Foundations](01-foundations.md) | [📚 Table of Contents](../README.md) | [Next: Unsupervised Learning ➡️](03-unsupervised-learning.md)
 
+</div>
+
+---
+
+# Part VI: Unsupervised Learning
+
+---
+
+## Chapter 15: Introduction to Unsupervised Learning
+
+### 15.1 What is Unsupervised Learning?
+
+Unsupervised learning discovers hidden patterns in data without labeled outputs.
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│         SUPERVISED vs UNSUPERVISED LEARNING                         │
+├─────────────────────────────────────────────────────────────────────┤
+│  SUPERVISED:                                                        │
+│  Input: (X, y) pairs                                               │
+│  Goal: Learn mapping X → y                                         │
+│                                                                     │
+│  UNSUPERVISED:                                                      │
+│  Input: X only (no labels)                                         │
+│  Goal: Find structure in X                                         │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+**Common Tasks:**
+1. **Clustering:** Group similar data points
+2. **Dimensionality Reduction:** Reduce features while preserving information
+3. **Anomaly Detection:** Find unusual data points
+4. **Association Rules:** Find relationships between features
+
+---
+
+## Chapter 16: Clustering Algorithms
+
+### 16.1 K-Means Clustering
+
+K-Means partitions data into K clusters by minimizing within-cluster variance.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+class KMeans:
+    """K-Means Clustering from scratch with k-means++ initialization."""
+    
+    def __init__(self, n_clusters=3, max_iterations=300, tol=1e-4, 
+                 init='k-means++', random_state=None):
+        self.n_clusters = n_clusters
+        self.max_iterations = max_iterations
+        self.tol = tol
+        self.init = init
+        self.random_state = random_state
+        self.centroids = None
+        self.labels = None
+        self.inertia = None
+        
+    def _init_centroids_kmeanspp(self, X):
+        """K-means++ initialization for better starting centroids."""
+        n_samples = X.shape[0]
+        centroids = []
+        
+        # First centroid: random
+        idx = np.random.randint(n_samples)
+        centroids.append(X[idx])
+        
+        # Remaining centroids
+        for _ in range(1, self.n_clusters):
+            distances = np.zeros(n_samples)
+            for i, x in enumerate(X):
+                min_dist = min(np.sum((x - c) ** 2) for c in centroids)
+                distances[i] = min_dist
+            
+            probabilities = distances / np.sum(distances)
+            idx = np.random.choice(n_samples, p=probabilities)
+            centroids.append(X[idx])
+        
+        return np.array(centroids)
+    
+    def _assign_clusters(self, X):
+        """Assign each point to nearest centroid."""
+        distances = np.zeros((X.shape[0], self.n_clusters))
+        for k in range(self.n_clusters):
+            distances[:, k] = np.sum((X - self.centroids[k]) ** 2, axis=1)
+        return np.argmin(distances, axis=1)
+    
+    def _update_centroids(self, X, labels):
+        """Update centroids as mean of assigned points."""
+        new_centroids = np.zeros((self.n_clusters, X.shape[1]))
+        for k in range(self.n_clusters):
+            points = X[labels == k]
+            if len(points) > 0:
+                new_centroids[k] = np.mean(points, axis=0)
+            else:
+                new_centroids[k] = X[np.random.randint(X.shape[0])]
+        return new_centroids
+    
+    def fit(self, X):
+        """Fit the K-Means model."""
+        X = np.array(X)
+        if self.random_state is not None:
+            np.random.seed(self.random_state)
+        
+        self.centroids = self._init_centroids_kmeanspp(X)
+        
+        for _ in range(self.max_iterations):
+            self.labels = self._assign_clusters(X)
+            new_centroids = self._update_centroids(X, self.labels)
+            
+            if np.sum((new_centroids - self.centroids) ** 2) < self.tol:
+                break
+            self.centroids = new_centroids
+        
+        self.inertia = sum(np.sum((X[self.labels == k] - self.centroids[k]) ** 2) 
+                          for k in range(self.n_clusters))
+        return self
+    
+    def predict(self, X):
+        return self._assign_clusters(np.array(X))
+
+
+# Example usage
+from sklearn.datasets import make_blobs
+
+X, y_true = make_blobs(n_samples=300, centers=4, cluster_std=0.6, random_state=42)
+
+kmeans = KMeans(n_clusters=4, random_state=42)
+kmeans.fit(X)
+
+print(f"Inertia: {kmeans.inertia:.2f}")
+print(f"Cluster sizes: {[np.sum(kmeans.labels == k) for k in range(4)]}")
+```
+
+### 16.2 Choosing K: Elbow Method and Silhouette Score
+
+```python
+from sklearn.metrics import silhouette_score
+
+def find_optimal_k(X, max_k=10):
+    """Find optimal K using elbow method and silhouette score."""
+    inertias = []
+    silhouettes = []
+    
+    for k in range(2, max_k + 1):
+        kmeans = KMeans(n_clusters=k, random_state=42)
+        kmeans.fit(X)
+        inertias.append(kmeans.inertia)
+        silhouettes.append(silhouette_score(X, kmeans.labels))
+    
+    fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+    
+    axes[0].plot(range(2, max_k + 1), inertias, 'bo-')
+    axes[0].set_xlabel('K')
+    axes[0].set_ylabel('Inertia')
+    axes[0].set_title('Elbow Method')
+    
+    axes[1].plot(range(2, max_k + 1), silhouettes, 'go-')
+    axes[1].set_xlabel('K')
+    axes[1].set_ylabel('Silhouette Score')
+    axes[1].set_title('Silhouette Analysis')
+    
+    plt.tight_layout()
+    return inertias, silhouettes
+
+inertias, silhouettes = find_optimal_k(X, max_k=8)
+print(f"Best K by silhouette: {np.argmax(silhouettes) + 2}")
+```
+
+### 16.3 Hierarchical Clustering
+
+```python
+from scipy.cluster.hierarchy import dendrogram, linkage, fcluster
+
+def hierarchical_clustering(X, n_clusters=3, method='ward'):
+    """Perform hierarchical clustering and return labels."""
+    Z = linkage(X, method=method)
+    labels = fcluster(Z, t=n_clusters, criterion='maxclust')
+    return labels, Z
+
+# Example
+labels, Z = hierarchical_clustering(X, n_clusters=4)
+
+plt.figure(figsize=(10, 5))
+dendrogram(Z, truncate_mode='level', p=5)
+plt.title('Hierarchical Clustering Dendrogram')
+plt.xlabel('Sample Index')
+plt.ylabel('Distance')
+plt.show()
+```
+
+### 16.4 DBSCAN: Density-Based Clustering
+
+```python
+class DBSCAN:
+    """DBSCAN clustering - finds arbitrary-shaped clusters and outliers."""
+    
+    def __init__(self, eps=0.5, min_samples=5):
+        self.eps = eps
+        self.min_samples = min_samples
+        self.labels_ = None
+        
+    def _find_neighbors(self, X, point_idx):
+        distances = np.sqrt(np.sum((X - X[point_idx]) ** 2, axis=1))
+        return np.where(distances <= self.eps)[0]
+    
+    def fit(self, X):
+        X = np.array(X)
+        n_samples = len(X)
+        labels = np.full(n_samples, -1)
+        
+        neighborhoods = [self._find_neighbors(X, i) for i in range(n_samples)]
+        core_points = {i for i in range(n_samples) if len(neighborhoods[i]) >= self.min_samples}
+        
+        cluster_id = 0
+        for i in range(n_samples):
+            if labels[i] != -1 or i not in core_points:
+                continue
+            
+            # BFS to expand cluster
+            queue = [i]
+            labels[i] = cluster_id
+            
+            while queue:
+                current = queue.pop(0)
+                if current in core_points:
+                    for neighbor in neighborhoods[current]:
+                        if labels[neighbor] == -1:
+                            labels[neighbor] = cluster_id
+                            if neighbor in core_points:
+                                queue.append(neighbor)
+            cluster_id += 1
+        
+        self.labels_ = labels
+        return self
+
+# Example with moons dataset
+from sklearn.datasets import make_moons
+
+X_moons, _ = make_moons(n_samples=200, noise=0.05, random_state=42)
+
+dbscan = DBSCAN(eps=0.2, min_samples=5)
+dbscan.fit(X_moons)
+
+print(f"Clusters found: {len(set(dbscan.labels_)) - (1 if -1 in dbscan.labels_ else 0)}")
+print(f"Noise points: {np.sum(dbscan.labels_ == -1)}")
+```
+
+### 16.5 Gaussian Mixture Models (GMM)
+
+```python
+from scipy.stats import multivariate_normal
+
+class GaussianMixture:
+    """Gaussian Mixture Model using EM algorithm."""
+    
+    def __init__(self, n_components=3, max_iterations=100, tol=1e-6):
+        self.n_components = n_components
+        self.max_iterations = max_iterations
+        self.tol = tol
+        
+    def fit(self, X):
+        X = np.array(X)
+        n_samples, n_features = X.shape
+        
+        # Initialize with K-means
+        kmeans = KMeans(n_clusters=self.n_components, random_state=42)
+        kmeans.fit(X)
+        
+        self.means = kmeans.centroids
+        self.weights = np.ones(self.n_components) / self.n_components
+        self.covariances = [np.cov(X[kmeans.labels == k].T) + 1e-6 * np.eye(n_features) 
+                           for k in range(self.n_components)]
+        
+        for _ in range(self.max_iterations):
+            # E-step
+            resp = self._e_step(X)
+            
+            # M-step
+            self._m_step(X, resp)
+        
+        return self
+    
+    def _e_step(self, X):
+        resp = np.zeros((len(X), self.n_components))
+        for k in range(self.n_components):
+            rv = multivariate_normal(self.means[k], self.covariances[k])
+            resp[:, k] = self.weights[k] * rv.pdf(X)
+        resp /= resp.sum(axis=1, keepdims=True) + 1e-10
+        return resp
+    
+    def _m_step(self, X, resp):
+        Nk = resp.sum(axis=0)
+        self.weights = Nk / len(X)
+        self.means = (resp.T @ X) / Nk[:, np.newaxis]
+        
+        for k in range(self.n_components):
+            diff = X - self.means[k]
+            self.covariances[k] = (resp[:, k:k+1] * diff).T @ diff / Nk[k]
+            self.covariances[k] += 1e-6 * np.eye(X.shape[1])
+    
+    def predict(self, X):
+        return np.argmax(self._e_step(np.array(X)), axis=1)
+    
+    def predict_proba(self, X):
+        return self._e_step(np.array(X))
+```
+
+---
+
+## Chapter 17: Dimensionality Reduction
+
+### 17.1 Principal Component Analysis (PCA)
+
+```python
+class PCA:
+    """Principal Component Analysis from scratch."""
+    
+    def __init__(self, n_components=None):
+        self.n_components = n_components
+        self.components = None
+        self.explained_variance_ratio = None
+        self.mean = None
+        
+    def fit(self, X):
+        X = np.array(X)
+        self.mean = np.mean(X, axis=0)
+        X_centered = X - self.mean
+        
+        # Covariance matrix and eigendecomposition
+        cov_matrix = np.cov(X_centered.T)
+        eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
+        
+        # Sort by eigenvalue
+        idx = np.argsort(eigenvalues)[::-1]
+        eigenvalues = np.real(eigenvalues[idx])
+        eigenvectors = np.real(eigenvectors[:, idx])
+        
+        if self.n_components is None:
+            self.n_components = X.shape[1]
+        
+        self.components = eigenvectors[:, :self.n_components].T
+        self.explained_variance_ratio = eigenvalues[:self.n_components] / np.sum(eigenvalues)
+        
+        return self
+    
+    def transform(self, X):
+        X_centered = np.array(X) - self.mean
+        return X_centered @ self.components.T
+    
+    def fit_transform(self, X):
+        self.fit(X)
+        return self.transform(X)
+    
+    def inverse_transform(self, X_transformed):
+        return X_transformed @ self.components + self.mean
+
+
+# Example on Iris
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+X, y = iris.data, iris.target
+
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X)
+
+print(f"Explained variance ratio: {pca.explained_variance_ratio}")
+print(f"Total variance explained: {sum(pca.explained_variance_ratio):.4f}")
+
+plt.figure(figsize=(8, 6))
+for i, name in enumerate(iris.target_names):
+    plt.scatter(X_pca[y == i, 0], X_pca[y == i, 1], label=name, alpha=0.7)
+plt.xlabel(f'PC1 ({pca.explained_variance_ratio[0]:.2%})')
+plt.ylabel(f'PC2 ({pca.explained_variance_ratio[1]:.2%})')
+plt.title('PCA on Iris Dataset')
+plt.legend()
+plt.show()
+```
+
+### 17.2 t-SNE and UMAP
+
+```python
+from sklearn.manifold import TSNE
+from sklearn.datasets import load_digits
+
+# Load digits for demonstration
+digits = load_digits()
+X_digits, y_digits = digits.data, digits.target
+
+# PCA
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_digits)
+
+# t-SNE
+tsne = TSNE(n_components=2, random_state=42, perplexity=30)
+X_tsne = tsne.fit_transform(X_digits)
+
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+axes[0].scatter(X_pca[:, 0], X_pca[:, 1], c=y_digits, cmap='tab10', alpha=0.6, s=10)
+axes[0].set_title('PCA')
+
+axes[1].scatter(X_tsne[:, 0], X_tsne[:, 1], c=y_digits, cmap='tab10', alpha=0.6, s=10)
+axes[1].set_title('t-SNE')
+
+plt.tight_layout()
+plt.show()
+
+print("PCA: Fast, linear, preserves global structure")
+print("t-SNE: Slow, nonlinear, preserves local structure")
+```
+
+---
+
+## Chapter 18: Anomaly Detection
+
+### 18.1 Statistical Methods
+
+```python
+def zscore_anomaly(X, threshold=3):
+    """Z-score based anomaly detection."""
+    mean = np.mean(X, axis=0)
+    std = np.std(X, axis=0)
+    z_scores = np.abs((X - mean) / (std + 1e-10))
+    return np.max(z_scores, axis=1) > threshold
+
+def iqr_anomaly(X, multiplier=1.5):
+    """IQR-based anomaly detection."""
+    Q1, Q3 = np.percentile(X, [25, 75], axis=0)
+    IQR = Q3 - Q1
+    lower, upper = Q1 - multiplier * IQR, Q3 + multiplier * IQR
+    return np.any((X < lower) | (X > upper), axis=1)
+```
+
+### 18.2 Isolation Forest
+
+```python
+from sklearn.ensemble import IsolationForest
+
+# Generate data with anomalies
+np.random.seed(42)
+X_normal = np.random.randn(200, 2)
+X_anomalies = np.random.uniform(-4, 4, (10, 2))
+X_all = np.vstack([X_normal, X_anomalies])
+
+# Fit Isolation Forest
+iso_forest = IsolationForest(contamination=0.05, random_state=42)
+predictions = iso_forest.fit_predict(X_all)
+
+print(f"Detected anomalies: {np.sum(predictions == -1)}")
+
+plt.figure(figsize=(8, 6))
+plt.scatter(X_all[predictions == 1, 0], X_all[predictions == 1, 1], 
+            c='blue', label='Normal', alpha=0.6)
+plt.scatter(X_all[predictions == -1, 0], X_all[predictions == -1, 1], 
+            c='red', marker='x', s=100, label='Anomaly')
+plt.legend()
+plt.title('Isolation Forest Anomaly Detection')
+plt.show()
+```
+
+### 18.3 One-Class SVM
+
+```python
+from sklearn.svm import OneClassSVM
+
+# Train only on normal data
+ocsvm = OneClassSVM(kernel='rbf', gamma='auto', nu=0.05)
+ocsvm.fit(X_normal)
+
+# Predict on all data
+predictions = ocsvm.predict(X_all)
+
+print(f"Detected anomalies: {np.sum(predictions == -1)}")
+```
+
+### 18.4 Local Outlier Factor
+
+```python
+from sklearn.neighbors import LocalOutlierFactor
+
+lof = LocalOutlierFactor(n_neighbors=20, contamination=0.05)
+predictions = lof.fit_predict(X_all)
+
+print(f"LOF detected anomalies: {np.sum(predictions == -1)}")
+```
+
+---
+
+## Chapter 19: Association Rule Mining
+
+### 19.1 The Apriori Algorithm
+
+```python
+from itertools import combinations
+
+class Apriori:
+    """Apriori algorithm for association rule mining."""
+    
+    def __init__(self, min_support=0.5, min_confidence=0.7):
+        self.min_support = min_support
+        self.min_confidence = min_confidence
+        self.frequent_itemsets = {}
+        self.rules = []
+        
+    def fit(self, transactions):
+        """Find frequent itemsets and generate rules."""
+        n_transactions = len(transactions)
+        
+        # Get all unique items
+        all_items = set()
+        for t in transactions:
+            all_items.update(t)
+        
+        # Find frequent 1-itemsets
+        current_itemsets = []
+        for item in all_items:
+            support = sum(1 for t in transactions if item in t) / n_transactions
+            if support >= self.min_support:
+                current_itemsets.append(frozenset([item]))
+                self.frequent_itemsets[frozenset([item])] = support
+        
+        # Find larger frequent itemsets
+        k = 2
+        while current_itemsets:
+            candidates = self._generate_candidates(current_itemsets, k)
+            current_itemsets = []
+            
+            for candidate in candidates:
+                support = sum(1 for t in transactions if candidate.issubset(set(t))) / n_transactions
+                if support >= self.min_support:
+                    current_itemsets.append(candidate)
+                    self.frequent_itemsets[candidate] = support
+            k += 1
+        
+        # Generate rules
+        self._generate_rules()
+        
+        return self
+    
+    def _generate_candidates(self, itemsets, k):
+        """Generate candidate k-itemsets."""
+        candidates = set()
+        itemsets_list = list(itemsets)
+        
+        for i in range(len(itemsets_list)):
+            for j in range(i + 1, len(itemsets_list)):
+                union = itemsets_list[i] | itemsets_list[j]
+                if len(union) == k:
+                    candidates.add(union)
+        
+        return candidates
+    
+    def _generate_rules(self):
+        """Generate association rules from frequent itemsets."""
+        for itemset, support in self.frequent_itemsets.items():
+            if len(itemset) < 2:
+                continue
+            
+            for i in range(1, len(itemset)):
+                for antecedent in combinations(itemset, i):
+                    antecedent = frozenset(antecedent)
+                    consequent = itemset - antecedent
+                    
+                    if antecedent in self.frequent_itemsets:
+                        confidence = support / self.frequent_itemsets[antecedent]
+                        if confidence >= self.min_confidence:
+                            lift = confidence / self.frequent_itemsets[consequent]
+                            self.rules.append({
+                                'antecedent': antecedent,
+                                'consequent': consequent,
+                                'support': support,
+                                'confidence': confidence,
+                                'lift': lift
+                            })
+
+
+# Example: Market basket analysis
+transactions = [
+    ['bread', 'milk', 'eggs'],
+    ['bread', 'butter'],
+    ['milk', 'butter', 'eggs'],
+    ['bread', 'milk', 'butter'],
+    ['bread', 'milk', 'eggs', 'butter'],
+    ['milk', 'eggs'],
+    ['bread', 'eggs'],
+    ['bread', 'milk'],
+]
+
+apriori = Apriori(min_support=0.3, min_confidence=0.6)
+apriori.fit(transactions)
+
+print("Frequent Itemsets:")
+for itemset, support in sorted(apriori.frequent_itemsets.items(), key=lambda x: -x[1]):
+    print(f"  {set(itemset)}: support = {support:.2f}")
+
+print("\nAssociation Rules:")
+for rule in sorted(apriori.rules, key=lambda x: -x['confidence']):
+    print(f"  {set(rule['antecedent'])} -> {set(rule['consequent'])}")
+    print(f"    confidence: {rule['confidence']:.2f}, lift: {rule['lift']:.2f}")
+```
+
+---
+
+## Summary: Unsupervised Learning
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│              UNSUPERVISED LEARNING CHEAT SHEET                      │
+├─────────────────────────────────────────────────────────────────────┤
+│  CLUSTERING                                                         │
+│  ├── K-Means: Fast, spherical clusters, need K                     │
+│  ├── Hierarchical: Dendrogram, no need for K                       │
+│  ├── DBSCAN: Arbitrary shapes, finds outliers                      │
+│  └── GMM: Soft clustering, elliptical clusters                     │
+│                                                                     │
+│  DIMENSIONALITY REDUCTION                                           │
+│  ├── PCA: Linear, fast, interpretable                              │
+│  ├── t-SNE: Nonlinear, great for visualization                     │
+│  └── UMAP: Faster than t-SNE, preserves global structure           │
+│                                                                     │
+│  ANOMALY DETECTION                                                  │
+│  ├── Z-score/IQR: Simple statistical methods                       │
+│  ├── Isolation Forest: Tree-based, scalable                        │
+│  ├── One-Class SVM: Kernel-based boundary                          │
+│  └── LOF: Density-based local outliers                             │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+
+---
+
+<div align="center">
+
+[⬅️ Previous: Supervised Learning](02-supervised-learning.md) | [📚 Table of Contents](../README.md) | [Next: Natural Language Processing ➡️](04-nlp.md)
+
+</div>
+
+---
+
+# Part VII: Natural Language Processing
+
+---
+
+## Chapter 20: Text Preprocessing
+
+### 20.1 The NLP Pipeline
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                    NLP PREPROCESSING PIPELINE                       │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  Raw Text                                                          │
+│      ↓                                                             │
+│  Tokenization (split into words/sentences)                         │
+│      ↓                                                             │
+│  Lowercasing                                                       │
+│      ↓                                                             │
+│  Stop Word Removal                                                 │
+│      ↓                                                             │
+│  Stemming / Lemmatization                                          │
+│      ↓                                                             │
+│  Vectorization (convert to numbers)                                │
+│      ↓                                                             │
+│  Ready for ML Model                                                │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### 20.2 Tokenization
+
+```python
+import re
+from collections import Counter
+
+def simple_tokenize(text):
+    """Basic word tokenization."""
+    text = text.lower()
+    tokens = re.findall(r'\b\w+\b', text)
+    return tokens
+
+def sentence_tokenize(text):
+    """Split text into sentences."""
+    sentences = re.split(r'(?<=[.!?])\s+', text)
+    return [s.strip() for s in sentences if s.strip()]
+
+# Example
+text = "Natural Language Processing is amazing! It helps computers understand human language. NLP is used everywhere."
+
+words = simple_tokenize(text)
+sentences = sentence_tokenize(text)
+
+print(f"Tokens: {words}")
+print(f"Sentences: {sentences}")
+```
+
+### 20.3 Stop Words and Stemming
+
+```python
+# Common English stop words
+STOP_WORDS = set([
+    'a', 'an', 'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
+    'of', 'with', 'by', 'from', 'is', 'are', 'was', 'were', 'be', 'been',
+    'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would',
+    'could', 'should', 'may', 'might', 'must', 'shall', 'can', 'this',
+    'that', 'these', 'those', 'i', 'you', 'he', 'she', 'it', 'we', 'they'
+])
+
+def remove_stop_words(tokens):
+    """Remove stop words from token list."""
+    return [t for t in tokens if t not in STOP_WORDS]
+
+class PorterStemmer:
+    """Simplified Porter Stemmer implementation."""
+    
+    def __init__(self):
+        self.vowels = set('aeiou')
+        
+    def _is_consonant(self, word, i):
+        if word[i] in self.vowels:
+            return False
+        if word[i] == 'y':
+            return i == 0 or not self._is_consonant(word, i - 1)
+        return True
+    
+    def _measure(self, word):
+        """Count VC sequences."""
+        n = 0
+        i = 0
+        while i < len(word) and self._is_consonant(word, i):
+            i += 1
+        while i < len(word):
+            while i < len(word) and not self._is_consonant(word, i):
+                i += 1
+            if i < len(word):
+                n += 1
+                while i < len(word) and self._is_consonant(word, i):
+                    i += 1
+        return n
+    
+    def stem(self, word):
+        """Apply stemming rules."""
+        word = word.lower()
+        
+        # Step 1: Remove common suffixes
+        if word.endswith('sses'):
+            word = word[:-2]
+        elif word.endswith('ies'):
+            word = word[:-2]
+        elif word.endswith('ss'):
+            pass
+        elif word.endswith('s'):
+            word = word[:-1]
+        
+        if word.endswith('eed'):
+            if self._measure(word[:-3]) > 0:
+                word = word[:-1]
+        elif word.endswith('ed'):
+            if any(c in self.vowels for c in word[:-2]):
+                word = word[:-2]
+        elif word.endswith('ing'):
+            if any(c in self.vowels for c in word[:-3]):
+                word = word[:-3]
+        
+        # Handle common endings
+        if word.endswith('ational'):
+            word = word[:-5] + 'e'
+        elif word.endswith('tion'):
+            word = word[:-3] + 'e'
+        elif word.endswith('ness'):
+            word = word[:-4]
+        elif word.endswith('ment'):
+            word = word[:-4]
+        elif word.endswith('ful'):
+            word = word[:-3]
+        elif word.endswith('ly'):
+            word = word[:-2]
+        
+        return word
+
+
+# Example
+stemmer = PorterStemmer()
+
+words = ['running', 'runs', 'ran', 'easily', 'happiness', 'hopeful']
+for word in words:
+    print(f"{word} -> {stemmer.stem(word)}")
+```
+
+### 20.4 Text Cleaning
+
+```python
+import html
+import unicodedata
+
+def clean_text(text):
+    """Comprehensive text cleaning."""
+    # Decode HTML entities
+    text = html.unescape(text)
+    
+    # Normalize unicode
+    text = unicodedata.normalize('NFKD', text)
+    
+    # Remove URLs
+    text = re.sub(r'http\S+|www\.\S+', '', text)
+    
+    # Remove email addresses
+    text = re.sub(r'\S+@\S+', '', text)
+    
+    # Remove special characters but keep basic punctuation
+    text = re.sub(r'[^\w\s.,!?-]', '', text)
+    
+    # Remove extra whitespace
+    text = re.sub(r'\s+', ' ', text).strip()
+    
+    return text
+
+
+# Example
+dirty_text = "Check out https://example.com! Email me at test@email.com 😊 #NLP"
+clean = clean_text(dirty_text)
+print(f"Original: {dirty_text}")
+print(f"Cleaned: {clean}")
+```
+
+---
+
+## Chapter 21: Text Vectorization
+
+### 21.1 Bag of Words (BoW)
+
+```python
+from collections import defaultdict
+import numpy as np
+
+class BagOfWords:
+    """Bag of Words vectorizer."""
+    
+    def __init__(self, max_features=None):
+        self.max_features = max_features
+        self.vocabulary = {}
+        
+    def fit(self, documents):
+        """Build vocabulary from documents."""
+        word_counts = Counter()
+        
+        for doc in documents:
+            tokens = simple_tokenize(doc)
+            word_counts.update(set(tokens))  # Count each word once per doc
+        
+        # Select top features
+        if self.max_features:
+            most_common = word_counts.most_common(self.max_features)
+        else:
+            most_common = word_counts.most_common()
+        
+        self.vocabulary = {word: idx for idx, (word, _) in enumerate(most_common)}
+        return self
+    
+    def transform(self, documents):
+        """Convert documents to BoW vectors."""
+        vectors = np.zeros((len(documents), len(self.vocabulary)))
+        
+        for i, doc in enumerate(documents):
+            tokens = simple_tokenize(doc)
+            for token in tokens:
+                if token in self.vocabulary:
+                    vectors[i, self.vocabulary[token]] += 1
+        
+        return vectors
+    
+    def fit_transform(self, documents):
+        self.fit(documents)
+        return self.transform(documents)
+
+
+# Example
+documents = [
+    "The cat sat on the mat",
+    "The dog sat on the log",
+    "Cats and dogs are pets",
+]
+
+bow = BagOfWords()
+X = bow.fit_transform(documents)
+
+print("Vocabulary:", bow.vocabulary)
+print("\nBoW Matrix:")
+print(X)
+```
+
+### 21.2 TF-IDF (Term Frequency-Inverse Document Frequency)
+
+```python
+class TfidfVectorizer:
+    """TF-IDF Vectorizer from scratch."""
+    
+    def __init__(self, max_features=None):
+        self.max_features = max_features
+        self.vocabulary = {}
+        self.idf = {}
+        
+    def fit(self, documents):
+        """Compute IDF values."""
+        n_docs = len(documents)
+        
+        # Count document frequency for each word
+        doc_freq = Counter()
+        word_counts = Counter()
+        
+        for doc in documents:
+            tokens = set(simple_tokenize(doc))
+            doc_freq.update(tokens)
+            word_counts.update(simple_tokenize(doc))
+        
+        # Select top features by total frequency
+        if self.max_features:
+            most_common = word_counts.most_common(self.max_features)
+            vocab_words = [word for word, _ in most_common]
+        else:
+            vocab_words = list(doc_freq.keys())
+        
+        self.vocabulary = {word: idx for idx, word in enumerate(vocab_words)}
+        
+        # Compute IDF: log(N / df) + 1
+        self.idf = {}
+        for word in self.vocabulary:
+            df = doc_freq[word]
+            self.idf[word] = np.log(n_docs / df) + 1
+        
+        return self
+    
+    def transform(self, documents):
+        """Convert documents to TF-IDF vectors."""
+        vectors = np.zeros((len(documents), len(self.vocabulary)))
+        
+        for i, doc in enumerate(documents):
+            tokens = simple_tokenize(doc)
+            token_counts = Counter(tokens)
+            
+            # Compute TF-IDF
+            for token, count in token_counts.items():
+                if token in self.vocabulary:
+                    tf = count / len(tokens)  # Term frequency
+                    tfidf = tf * self.idf[token]
+                    vectors[i, self.vocabulary[token]] = tfidf
+        
+        # L2 normalize
+        norms = np.linalg.norm(vectors, axis=1, keepdims=True)
+        norms[norms == 0] = 1
 
 ---
 
