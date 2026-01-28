@@ -85,6 +85,7 @@ Benefits:
 # EXAMPLE 1.1: Traditional Programming vs Machine Learning
 
 # TRADITIONAL APPROACH: Hand-coded rules
+```python
 def is_spam_traditional(email_text, sender):
     """
     Traditional rule-based spam detection.
@@ -203,6 +204,8 @@ def compare_approaches():
         print(f"Email: '{email[:40]}...'")
         print(f"Spam: {bool(prediction)} (confidence: {proba[prediction]:.1%})\n")
 
+
+```
 
 ## 1.2 A Brief History of Machine Learning
 
@@ -628,6 +631,8 @@ def supervised_regression_example():
         print(f"  Predicted Price: ${pred:,.0f}")
 
 
+```
+
 ### 1.4.2 Unsupervised Learning
 
 > **Definition:** Learning patterns from data WITHOUT labeled examples. The algorithm must discover structure on its own.
@@ -765,6 +770,8 @@ def unsupervised_clustering_example():
     
     return kmeans, scaler, cluster_labels
 
+
+```
 
 ### 1.4.3 Reinforcement Learning
 
@@ -973,6 +980,8 @@ def simple_rl_example():
     return Q
 
 
+```
+
 ### 1.4.4 Self-Supervised Learning
 
 > **Definition:** A form of learning where the data provides its own labels. The algorithm creates supervisory signals from the input data itself.
@@ -1124,6 +1133,8 @@ def self_supervised_concept_example():
     but at a MUCH larger scale with neural networks.
     """)
 
+
+```
 
 # 1.4.5 SEMI-SUPERVISED LEARNING
 
@@ -1364,6 +1375,7 @@ DETAILED BREAKDOWN:
 
 # EXAMPLE 1.7: Complete ML Workflow
 
+```python
 def complete_ml_workflow_example():
     """
     Demonstrates a complete ML workflow from problem definition to evaluation.
@@ -1626,6 +1638,8 @@ def complete_ml_workflow_example():
     
     return best_model, scaler
 
+
+```
 
 # 1.6 WHEN TO USE (AND NOT USE) MACHINE LEARNING
 
@@ -1923,6 +1937,7 @@ NVIDIA GPU on Linux/Windows:
    pip install torch --index-url https://download.pytorch.org/whl/cu118
 
 Verify GPU:
+```python
 import torch
 print(f"CUDA available: {torch.cuda.is_available()}")
 print(f"GPU: {torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'None'}")
@@ -1932,6 +1947,8 @@ Mac with Apple Silicon:
 • pip install torch torchvision torchaudio
 • device = "mps" if torch.backends.mps.is_available() else "cpu"
 
+
+```
 
 # 1.8 CHAPTER 1 EXERCISES
 
@@ -2029,6 +2046,7 @@ g) Classification (one of multiple types)
 
 # EXERCISE 1.4 SOLUTION
 
+```python
 def exercise_1_4_solution():
     """Solution to Exercise 1.4: Fruit classifier"""
     import numpy as np
@@ -2082,6 +2100,8 @@ def exercise_1_4_solution():
     
     return knn, lr
 
+
+```
 
 # 1.9 CHAPTER 1 SUMMARY
 
@@ -2158,8 +2178,11 @@ This math forms the backbone of all ML algorithms!
 ║                                                                               ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 
+```python
 import numpy as np
 from scipy import stats
+
+```
 
 # 2.1 LINEAR ALGEBRA ESSENTIALS
 
@@ -2209,6 +2232,7 @@ TENSORS: Generalization to any number of dimensions
 
 # EXAMPLE 2.1: Creating Scalars, Vectors, and Matrices
 
+```python
 def example_scalars_vectors_matrices():
     """Demonstrate creating and working with basic linear algebra objects."""
     
@@ -2373,6 +2397,8 @@ def example_svd():
     print(f"Approximation error: {np.linalg.norm(A - A_approx):.2f}")
 
 
+```
+
 # 2.2 CALCULUS FOR MACHINE LEARNING
 
 CALCULUS FOR MACHINE LEARNING
@@ -2398,6 +2424,7 @@ When f depends on multiple variables:
 
 The gradient points in the direction of steepest increase.
 
+```python
 def example_derivatives_gradients():
     """Demonstrate derivatives and gradients."""
     
@@ -2589,6 +2616,8 @@ def example_gradient_descent_linear_regression():
     print(f"Final loss: {compute_loss(X_b, y, theta):.6f}")
 
 
+```
+
 # 2.3 PROBABILITY AND STATISTICS
 
 PROBABILITY AND STATISTICS
@@ -2611,6 +2640,7 @@ COMMON DISTRIBUTIONS:
 • Normal: The bell curve (everywhere in ML!)
 • Poisson: Count of events in fixed interval
 
+```python
 def example_probability_basics():
     """Demonstrate probability concepts."""
     
@@ -2746,6 +2776,8 @@ def example_descriptive_statistics():
     print(f"  Kurtosis: {stats.kurtosis(data):.3f}")
 
 
+```
+
 # 2.4 INFORMATION THEORY
 
 INFORMATION THEORY
@@ -2764,6 +2796,7 @@ This is THE loss function for classification!
 KL DIVERGENCE: Measures how Q differs from P
     D_KL(P || Q) = H(P, Q) - H(P)
 
+```python
 def example_entropy():
     """Demonstrate entropy."""
     
@@ -2916,6 +2949,8 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
+```
+
 # 3.1 UNDERSTANDING YOUR DATA
 
 UNDERSTANDING YOUR DATA
@@ -2976,6 +3011,7 @@ THE EDA CHECKLIST:
 □ Outliers
 □ Duplicate rows
 
+```python
 def create_sample_dataset():
     """Create a realistic sample dataset for demonstration."""
     np.random.seed(42)
@@ -3193,6 +3229,8 @@ def example_eda_comprehensive():
     return df
 
 
+```
+
 # 3.2 DATA CLEANING
 
 DATA CLEANING
@@ -3245,6 +3283,7 @@ STRATEGIES:
    Create a binary column indicating missingness
    (Can capture "missingness as information")
 
+```python
 def example_handling_missing_values():
     """Demonstrate different methods for handling missing values."""
     
@@ -3380,6 +3419,8 @@ def example_handling_missing_values():
     """)
 
 
+```
+
 # 3.2.2 DEALING WITH OUTLIERS
 
 DEALING WITH OUTLIERS
@@ -3405,6 +3446,7 @@ HANDLING STRATEGIES:
 • Keep outliers (if they're real)
 • Use robust models
 
+```python
 def example_outlier_detection():
     """Demonstrate outlier detection methods."""
     
@@ -3505,6 +3547,8 @@ def example_outlier_detection():
     print(f"   After log: {df_log['value_log'].skew():.3f}")
 
 
+```
+
 # 3.3 FEATURE ENGINEERING
 
 FEATURE ENGINEERING
@@ -3519,6 +3563,7 @@ knowledge. 'Applied machine learning' is basically feature engineering."
 
 # 3.3.1 FEATURE CREATION
 
+```python
 def example_feature_creation():
     """Demonstrate various feature creation techniques."""
     
@@ -3669,6 +3714,8 @@ def example_feature_creation():
     print("  5. Aggregation features (group statistics)")
 
 
+```
+
 # 3.4 DATA PREPROCESSING
 
 DATA PREPROCESSING
@@ -3678,6 +3725,7 @@ Preprocessing transforms raw features into a format suitable for ML algorithms.
 
 # 3.4.1 ENCODING CATEGORICAL VARIABLES
 
+```python
 def example_categorical_encoding():
     """Demonstrate categorical encoding methods."""
     
@@ -3821,8 +3869,11 @@ def example_categorical_encoding():
     """)
 
 
+```
+
 # 3.4.2 FEATURE SCALING
 
+```python
 def example_feature_scaling():
     """Demonstrate feature scaling methods."""
     
@@ -3957,8 +4008,11 @@ def example_feature_scaling():
     """)
 
 
+```
+
 # 3.5 TRAIN/TEST SPLIT STRATEGIES
 
+```python
 def example_train_test_split():
     """Demonstrate train/test split strategies."""
     
@@ -4073,6 +4127,8 @@ def example_train_test_split():
               f"Test indices [{test_idx[0]}-{test_idx[-1]}]")
 
 
+```
+
 # 3.6 CHAPTER 3 SUMMARY
 
 CHAPTER 3 SUMMARY
@@ -4117,38 +4173,16 @@ KEY TAKEAWAYS:
    • K-Fold CV: More reliable estimates
    • Time series: Respect temporal order
 
+### Data Preprocessing Checklist
 
-DATA PREPROCESSING CHECKLIST:
-□ Performed EDA
-□ Handled missing values
-□ Dealt with outliers
-□ Created useful features
-□ Encoded categorical variables
-□ Scaled numerical features
-□ Split data properly (with stratification if needed)
-□ No data leakage (fit on train only)
-
-# Run all examples
-
-if __name__ == "__main__":
-    print("\n" + "="*70)
-    print("CHAPTER 3: DATA FUNDAMENTALS")
-    print("="*70)
-    
-    example_eda_comprehensive()
-    print("\n")
-    example_handling_missing_values()
-    print("\n")
-    example_outlier_detection()
-    print("\n")
-    example_feature_creation()
-    print("\n")
-    example_categorical_encoding()
-    print("\n")
-    example_feature_scaling()
-    print("\n")
-    example_train_test_split()
-
+- [ ] Performed EDA
+- [ ] Handled missing values
+- [ ] Dealt with outliers
+- [ ] Created useful features
+- [ ] Encoded categorical variables
+- [ ] Scaled numerical features
+- [ ] Split data properly (with stratification if needed)
+- [ ] No data leakage (fit on train only)
 
 ---
 
