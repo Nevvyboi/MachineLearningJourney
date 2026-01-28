@@ -4,7 +4,7 @@
 
 ![Header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12&height=150&section=header&text=From%20Zero%20to%20Production-Ready&fontSize=30&fontAlignY=35&animation=twinkling)
 
-**The Complete ML Textbook | 2026 Edition**
+**The Complete Machine Learning Journey**
 
 [![Parts](https://img.shields.io/badge/📚%20Chapters-20-blue?style=for-the-badge)](#-table-of-contents)
 [![Lines](https://img.shields.io/badge/📝%20Lines-30,000+-green?style=for-the-badge)](#)
@@ -24,10 +24,10 @@
 ## 📁 Repository Structure
 
 ```
-ml-textbook/
+MachineLearningJourney/
 ├── 📄 README.md
 ├── 📄 LICENSE
-├── 📄 textbook.md      # Full textbook (single file)
+├── 📄 textook.md      # Full textbook (single file)
 └── 📂 chapters/                     # Individual chapters
     ├── 00-introduction.md
     ├── 01-foundations.md
