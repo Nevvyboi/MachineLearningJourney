@@ -4,7 +4,7 @@
 
 ![Header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12&height=150&section=header&text=From%20Zero%20to%20Production-Ready&fontSize=30&fontAlignY=35&animation=twinkling)
 
-**The Complete ML Textbook | 2025 Edition**
+**The Complete ML Textbook | 2026 Edition**
 
 [![Parts](https://img.shields.io/badge/📚%20Parts-22-blue?style=for-the-badge)](#)
 [![Chapters](https://img.shields.io/badge/📖%20Chapters-85+-purple?style=for-the-badge)](#)
