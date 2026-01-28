@@ -6,10 +6,9 @@
 
 **The Complete ML Textbook | 2026 Edition**
 
-[![Parts](https://img.shields.io/badge/📚%20Parts-22-blue?style=for-the-badge)](#)
-[![Chapters](https://img.shields.io/badge/📖%20Chapters-85+-purple?style=for-the-badge)](#)
+[![Parts](https://img.shields.io/badge/📚%20Chapters-20-blue?style=for-the-badge)](#-table-of-contents)
 [![Lines](https://img.shields.io/badge/📝%20Lines-30,000+-green?style=for-the-badge)](#)
-[![Examples](https://img.shields.io/badge/🐍%20Examples-156-orange?style=for-the-badge)](#)
+[![Examples](https://img.shields.io/badge/🐍%20Code%20Examples-156-orange?style=for-the-badge)](#)
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
@@ -22,15 +21,84 @@
 
 </div>
 
-## 🎯 What You'll Learn
+## 📁 Repository Structure
 
-| 🌱 **Foundations** | 🧠 **Deep Learning** | 🚀 **Production** |
-|:------------------:|:--------------------:|:-----------------:|
-| ML Fundamentals | NLP & Transformers | MLOps & CI/CD |
-| Math Essentials | Computer Vision | Model Deployment |
-| Data Processing | Reinforcement Learning | System Design |
-| Classic Algorithms | GANs & AutoML | Interview Prep |
-| Neural Networks | Time Series | Case Studies |
+```
+ml-textbook/
+├── 📄 README.md
+├── 📄 LICENSE
+├── 📄 textbook.md      # Full textbook (single file)
+└── 📂 chapters/                     # Individual chapters
+    ├── 00-introduction.md
+    ├── 01-foundations.md
+    ├── 02-supervised-learning.md
+    ├── 03-unsupervised-learning.md
+    ├── 04-nlp.md
+    ├── 05-time-series.md
+    ├── 06-mlops.md
+    ├── 07-appendices.md
+    ├── 08-computer-vision.md
+    ├── 09-reinforcement-learning.md
+    ├── 10-projects.md
+    ├── 11-advanced-topics.md
+    ├── 12-responsible-ai.md
+    ├── 13-optimization.md
+    ├── 14-graph-neural-networks.md
+    ├── 15-exercises.md
+    ├── 16-foundation-models.md
+    ├── 17-advanced-algorithms.md
+    ├── 18-interview-prep.md
+    └── 19-case-studies.md
+```
+
+---
+
+## 📚 Table of Contents
+
+### 🔵 Core Foundations
+
+| # | Chapter | Description | Lines |
+|:-:|:--------|:------------|------:|
+| 00 | [Introduction](chapters/00-introduction.md) | About, Prerequisites, TOC | 218 |
+| 01 | [Foundations](chapters/01-foundations.md) | ML Basics, Math, Data, Neural Networks | 4,949 |
+| 02 | [Supervised Learning](chapters/02-supervised-learning.md) | Regression, Trees, SVM, Ensembles | 5,884 |
+| 03 | [Unsupervised Learning](chapters/03-unsupervised-learning.md) | Clustering, PCA, Anomaly Detection | 627 |
+
+### 🟢 Specialized Domains
+
+| # | Chapter | Description | Lines |
+|:-:|:--------|:------------|------:|
+| 04 | [NLP](chapters/04-nlp.md) | Text Processing, Embeddings, Transformers | 981 |
+| 05 | [Time Series](chapters/05-time-series.md) | ARIMA, Prophet, LSTM Forecasting | 837 |
+| 06 | [MLOps](chapters/06-mlops.md) | Deployment, Monitoring, CI/CD | 826 |
+| 07 | [Appendices](chapters/07-appendices.md) | Cheat Sheets, Glossary, Resources | 743 |
+
+### 🟣 Advanced Deep Learning
+
+| # | Chapter | Description | Lines |
+|:-:|:--------|:------------|------:|
+| 08 | [Computer Vision](chapters/08-computer-vision.md) | ResNet, YOLO, U-Net, Segmentation | 1,171 |
+| 09 | [Reinforcement Learning](chapters/09-reinforcement-learning.md) | Q-Learning, DQN, Policy Gradients | 1,269 |
+| 10 | [Projects](chapters/10-projects.md) | End-to-End Implementations | 1,199 |
+| 11 | [Advanced Topics](chapters/11-advanced-topics.md) | GANs, Transformers, AutoML | 1,230 |
+
+### 🟠 Expert & Production
+
+| # | Chapter | Description | Lines |
+|:-:|:--------|:------------|------:|
+| 12 | [Responsible AI](chapters/12-responsible-ai.md) | Fairness, Interpretability, Privacy | 1,098 |
+| 13 | [Optimization](chapters/13-optimization.md) | Optimizers, Schedulers, Regularization | 1,535 |
+| 14 | [Graph Neural Networks](chapters/14-graph-neural-networks.md) | GCN, GAT, GraphSAGE | 1,064 |
+| 15 | [Exercises](chapters/15-exercises.md) | Coding Challenges, Quizzes | 1,192 |
+
+### 🔴 Cutting Edge & Career
+
+| # | Chapter | Description | Lines |
+|:-:|:--------|:------------|------:|
+| 16 | [Foundation Models](chapters/16-foundation-models.md) | Self-Supervised, LLMs, CLIP | 1,033 |
+| 17 | [Advanced Algorithms](chapters/17-advanced-algorithms.md) | Bayesian ML, Meta-Learning, Compression | 1,195 |
+| 18 | [Interview Prep](chapters/18-interview-prep.md) | System Design, Coding Questions | 1,185 |
+| 19 | [Case Studies](chapters/19-case-studies.md) | Healthcare, Finance, E-commerce | 1,241 |
 
 ---
 
@@ -54,60 +122,14 @@ print(f"🎯 Accuracy: {model.score(X_test, y_test):.1%}")
 
 ---
 
-## 📚 Table of Contents
-
-### 🔵 Part I-V: Core Foundations
-
-| Part | Topic | Key Concepts |
-|:----:|:------|:-------------|
-| **I** | ML Foundations | What is ML • Types • Workflow • Evaluation |
-| **II** | Mathematics | Linear Algebra • Calculus • Probability |
-| **III** | Data | Preprocessing • Feature Engineering |
-| **IV** | Supervised Learning | Regression • Trees • SVM • Ensembles |
-| **V** | Neural Networks | Perceptrons • Backprop • CNNs • RNNs |
-
-### 🟢 Part VI-X: Specialized Domains
-
-| Part | Topic | Key Concepts |
-|:----:|:------|:-------------|
-| **VI** | Unsupervised | Clustering • PCA • Anomaly Detection |
-| **VII** | NLP | Embeddings • Transformers • BERT |
-| **VIII** | Time Series | ARIMA • Prophet • LSTM |
-| **IX** | MLOps | Deployment • Monitoring • CI/CD |
-| **X** | Appendices | Cheat Sheets • Glossary |
-
-### 🟣 Part XI-XV: Advanced Deep Learning
-
-| Part | Topic | Key Concepts |
-|:----:|:------|:-------------|
-| **XI** | Computer Vision | ResNet • YOLO • U-Net |
-| **XII** | Reinforcement Learning | Q-Learning • DQN • Policy Gradients |
-| **XIII** | Projects | End-to-End Implementations |
-| **XIV** | Advanced Topics | GANs • Transformers • AutoML |
-| **XV** | Responsible AI | Fairness • Interpretability • Privacy |
-
-### 🟠 Part XVI-XXII: Expert & Career
-
-| Part | Topic | Key Concepts |
-|:----:|:------|:-------------|
-| **XVI** | Optimization | Adam • Learning Rates • Regularization |
-| **XVII** | Graph Neural Networks | GCN • GAT • GraphSAGE |
-| **XVIII** | Exercises | Coding Challenges • Quizzes |
-| **XIX** | Foundation Models | LLMs • CLIP • Self-Supervised |
-| **XX** | Advanced Algorithms | Bayesian ML • Meta-Learning |
-| **XXI** | Interview Prep | System Design • Coding Questions |
-| **XXII** | Case Studies | Healthcare • Finance • E-commerce |
-
----
-
 ## 🗺️ Learning Roadmap
 
 ```
-📅 Week 1-2   ████████░░░░░░░░  Foundations (Parts I-II)
-📅 Week 3-4   ████████████░░░░  Core ML (Parts III-IV)  
-📅 Week 5-6   ████████████████  Deep Learning (Part V)
-📅 Week 7-8   ████████████████  NLP & CV (Parts VII, XI)
-📅 Week 9-10  ████████████████  Production (Parts IX, XV)
+📅 Week 1-2   ████████░░░░░░░░  Chapters 00-01: Foundations
+📅 Week 3-4   ████████████░░░░  Chapters 02-03: Core ML
+📅 Week 5-6   ████████████████  Chapters 04-05: NLP & Time Series
+📅 Week 7-8   ████████████████  Chapters 08-09: CV & RL
+📅 Week 9-10  ████████████████  Chapters 06, 12: MLOps & Ethics
 ```
 
 ---
@@ -120,7 +142,7 @@ print(f"🎯 Accuracy: {model.score(X_test, y_test):.1%}")
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  📊 TABULAR     →  XGBoost / LightGBM / Random Forest      │
-│  🖼️ IMAGES      →  ResNet / EfficientNet / ViT              │
+│  🖼️ IMAGES      →  ResNet / EfficientNet / ViT             │
 │  📝 TEXT        →  BERT / RoBERTa / GPT                    │
 │  📈 TIME SERIES →  ARIMA / Prophet / LSTM                  │
 │  🔗 GRAPHS      →  GCN / GAT / GraphSAGE                   │
@@ -145,9 +167,24 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install numpy pandas scikit-learn torch matplotlib
 ```
 
+---
+
+## 📖 Reading Options
+
+**Option 1: Single File**
+- Read [`textbook.md`](textbook.md) for the full textbook in one file
+
+**Option 2: By Chapter**
+- Browse the [`chapters/`](chapters/) folder and read topics individually
+
+**Option 3: Quick Reference**
+- Start with [`chapters/00-introduction.md`](chapters/00-introduction.md) for TOC and cheat sheets
+
+---
+
 ## 📜 License
 
-MIT License -> see [LICENSE](LICENSE) for details.
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
@@ -158,5 +195,7 @@ MIT License -> see [LICENSE](LICENSE) for details.
 **⭐ Star this repo if you find it helpful!**
 
 Made with ❤️ for the ML Community
+
+**Total: 20 Chapters | 29,477 Lines | 1.1 MB**
 
 </div>
