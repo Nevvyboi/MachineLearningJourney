@@ -1,6 +1,38 @@
-# MACHINE LEARNING TEXTBOOK
+# THE COMPLETE MACHINE LEARNING TEXTBOOK
 
-## Complete Table of Contents
+## From Zero to Production-Ready | 2025 Edition
+
+---
+
+```
+ __  __            _     _              _                          _             
+|  \/  | __ _  ___| |__ (_)_ __   ___  | |    ___  __ _ _ __ _ __ (_)_ __   __ _ 
+| |\/| |/ _` |/ __| '_ \| | '_ \ / _ \ | |   / _ \/ _` | '__| '_ \| | '_ \ / _` |
+| |  | | (_| | (__| | | | | | | |  __/ | |__|  __/ (_| | |  | | | | | | | | (_| |
+|_|  |_|\__,_|\___|_| |_|_|_| |_|\___| |_____\___|\__,_|_|  |_| |_|_|_| |_|\__, |
+                                                                           |___/ 
+```
+
+---
+
+## About This Textbook
+
+This comprehensive textbook is designed to take you from complete beginner to expert in Machine Learning. Every concept is explained multiple ways, with theory, intuition, mathematics, and practical code examples.
+
+### How to Use This Textbook
+
+- **Read sequentially** for comprehensive learning
+- **Use the table of contents** to jump to specific topics
+- **Run the code examples** in your own environment
+- **Complete the exercises** at the end of each chapter
+- **Use the cheat sheets** for quick reference
+- **Return to troubleshooting sections** when you hit issues
+
+### Prerequisites
+
+- Basic Python programming knowledge
+- High school mathematics (algebra, basic calculus helpful)
+- Curiosity and willingness to learn
 
 ---
 
@@ -71,12 +103,11 @@
 - Appendix A: Python and NumPy Refresher
 - Appendix B: Algorithm Cheat Sheets
 - Appendix C: Common Errors and Solutions
-- Appendix D: Interview Questions
-- Appendix E: Glossary
-- Appendix F: Resources
+- Appendix D: Glossary
+- Appendix E: Resources
 
 ## Part XI: Advanced Computer Vision
-- Chapter 44: CNN Architectures (VGG, ResNet, Inception, DenseNet)
+- Chapter 44: CNN Architectures (VGG, ResNet, EfficientNet)
 - Chapter 45: Object Detection (YOLO, Faster R-CNN)
 - Chapter 46: Image Segmentation (U-Net)
 - Chapter 47: Data Augmentation
@@ -86,719 +117,144 @@
 - Chapter 49: Q-Learning and SARSA
 - Chapter 50: Deep Q-Networks
 - Chapter 51: Policy Gradient Methods
-- Chapter 52: Advanced RL Topics
 
 ## Part XIII: Practical Projects
-- Chapter 53: End-to-End Project Workflow
-- Chapter 54: Image Classification Project
-- Chapter 55: NLP Sentiment Analysis Project
-- Chapter 56: Time Series Forecasting Project
-- Chapter 57: Recommendation System Project
+- Chapter 52: End-to-End Project Workflow
+- Chapter 53: Image Classification Project
+- Chapter 54: NLP Sentiment Analysis Project
+- Chapter 55: Time Series Forecasting Project
 
 ## Part XIV: Advanced Topics
-- Chapter 58: Generative Adversarial Networks
-- Chapter 59: Transformers In-Depth
-- Chapter 60: AutoML and Neural Architecture Search
+- Chapter 56: Generative Adversarial Networks
+- Chapter 57: Transformers In-Depth
+- Chapter 58: AutoML and Neural Architecture Search
 
 ## Part XV: Responsible AI
-- Chapter 61: Fairness in ML
-- Chapter 62: Model Interpretability
-- Chapter 63: Privacy in ML (Differential Privacy, Federated Learning)
+- Chapter 59: Fairness in ML
+- Chapter 60: Model Interpretability
+- Chapter 61: Privacy in ML
 
 ## Part XVI: Optimization Deep Dive
-- Chapter 64: Optimizer Algorithms
-- Chapter 65: Learning Rate Schedulers
-- Chapter 66: Regularization Techniques
-- Chapter 67: Training Best Practices
+- Chapter 62: Optimizer Algorithms
+- Chapter 63: Learning Rate Schedulers
+- Chapter 64: Regularization Techniques
+- Chapter 65: Training Best Practices
 
 ## Part XVII: Graph Neural Networks
-- Chapter 68: Graph Fundamentals
-- Chapter 69: GNN Layers (GCN, GAT, GraphSAGE)
-- Chapter 70: Graph-Level Tasks
-- Chapter 71: Advanced GNN Topics
+- Chapter 66: Graph Fundamentals
+- Chapter 67: GNN Layers (GCN, GAT, GraphSAGE)
+- Chapter 68: Graph-Level Tasks
 
 ## Part XVIII: Exercises and Projects
-- Chapter 72: Conceptual Exercises
-- Chapter 73: Coding Exercises
-- Chapter 74: Mini-Projects
-- Chapter 75: Quiz Questions
+- Chapter 69: Conceptual Exercises
+- Chapter 70: Coding Exercises
+- Chapter 71: Mini-Projects
+- Chapter 72: Quiz Questions
 
 ## Part XIX: Foundation Models
-- Chapter 76: Self-Supervised Learning
-- Chapter 77: Large Language Models
-- Chapter 78: Vision Foundation Models
-- Chapter 79: Efficient Fine-tuning
+- Chapter 73: Self-Supervised Learning
+- Chapter 74: Large Language Models
+- Chapter 75: Vision Foundation Models
+- Chapter 76: Efficient Fine-tuning
+
+## Part XX: Advanced Algorithms
+- Chapter 77: Bayesian Machine Learning
+- Chapter 78: Meta-Learning
+- Chapter 79: Neural Network Compression
+- Chapter 80: Continual Learning
+
+## Part XXI: Interview Preparation
+- Chapter 81: ML System Design Interview
+- Chapter 82: Coding Interview Questions
+- Chapter 83: Behavioral Interview Questions
+
+## Part XXII: Case Studies
+- Chapter 84: Industry Case Studies (Healthcare, Finance, E-commerce)
+- Chapter 85: ML in Production Lessons
 
 ---
 
-# QUICK REFERENCE GUIDE
+# QUICK REFERENCE GUIDES
 
-## Model Selection Flowchart
+## Model Selection Guide
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                    MODEL SELECTION GUIDE                            │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│  What is your target variable?                                     │
-│  │                                                                 │
-│  ├── Continuous (regression)                                       │
-│  │   ├── Small data: Linear Regression, Ridge, Lasso              │
-│  │   ├── Medium data: Random Forest, Gradient Boosting            │
-│  │   └── Large data: Neural Networks                              │
-│  │                                                                 │
-│  ├── Categorical (classification)                                  │
-│  │   ├── Binary                                                    │
-│  │   │   ├── Simple: Logistic Regression                          │
-│  │   │   ├── Complex: Random Forest, XGBoost                      │
-│  │   │   └── Very complex: Neural Networks                        │
-│  │   └── Multi-class                                               │
-│  │       ├── Few classes: Softmax, SVM                            │
-│  │       └── Many classes: Neural Networks                        │
-│  │                                                                 │
-│  └── No target (unsupervised)                                      │
-│      ├── Clustering: K-Means, DBSCAN, GMM                         │
-│      ├── Dimensionality reduction: PCA, t-SNE, UMAP               │
-│      └── Anomaly detection: Isolation Forest, One-Class SVM       │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-```
-
-## Data Type Guide
-
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                    DATA TYPE GUIDE                                  │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│  TABULAR DATA                                                       │
-│  ├── Tree-based: XGBoost, LightGBM, CatBoost                       │
-│  ├── Linear: Logistic/Linear Regression                            │
-│  └── Neural: MLPs, TabNet                                          │
-│                                                                     │
-│  IMAGE DATA                                                         │
-│  ├── Classification: ResNet, EfficientNet, ViT                     │
-│  ├── Detection: YOLO, Faster R-CNN                                 │
-│  └── Segmentation: U-Net, Mask R-CNN                               │
-│                                                                     │
-│  TEXT DATA                                                          │
-│  ├── Traditional: TF-IDF + SVM/Naive Bayes                         │
-│  ├── Modern: BERT, RoBERTa, GPT                                    │
-│  └── Generation: GPT, T5                                           │
-│                                                                     │
-│  TIME SERIES                                                        │
-│  ├── Classical: ARIMA, Prophet                                     │
-│  ├── Deep: LSTM, Transformer                                       │
-│  └── Tree-based: XGBoost with lag features                         │
-│                                                                     │
-│  GRAPH DATA                                                         │
-│  ├── Node classification: GCN, GAT                                 │
-│  └── Graph classification: Graph pooling + GNN                     │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-```
+| Data Type | First Try | Alternatives |
+|-----------|-----------|--------------|
+| Tabular | XGBoost, LightGBM | Random Forest, Neural Nets |
+| Images | ResNet, EfficientNet | ViT, ConvNeXt |
+| Text | BERT, RoBERTa | GPT, T5 |
+| Time Series | ARIMA, Prophet | LSTM, Transformer |
+| Graphs | GCN, GAT | GraphSAGE |
 
 ## Hyperparameter Quick Reference
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                HYPERPARAMETER GUIDE                                 │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│  NEURAL NETWORKS                                                    │
-│  ├── Learning rate: 1e-4 to 1e-2 (start with 1e-3)                │
-│  ├── Batch size: 32, 64, 128, 256                                  │
-│  ├── Hidden layers: 2-6 for most tasks                             │
-│  ├── Hidden units: 64, 128, 256, 512                               │
-│  ├── Dropout: 0.1-0.5                                              │
-│  └── Weight decay: 1e-5 to 1e-2                                    │
-│                                                                     │
-│  RANDOM FOREST                                                      │
-│  ├── n_estimators: 100-1000                                        │
-│  ├── max_depth: None or 10-50                                      │
-│  ├── min_samples_split: 2-20                                       │
-│  ├── min_samples_leaf: 1-10                                        │
-│  └── max_features: 'sqrt' or 'log2'                                │
-│                                                                     │
-│  XGBOOST                                                            │
-│  ├── learning_rate: 0.01-0.3                                       │
-│  ├── max_depth: 3-10                                               │
-│  ├── n_estimators: 100-1000                                        │
-│  ├── subsample: 0.7-1.0                                            │
-│  ├── colsample_bytree: 0.7-1.0                                     │
-│  └── reg_alpha, reg_lambda: 0-10                                   │
-│                                                                     │
-│  TRANSFORMERS                                                       │
-│  ├── Learning rate: 1e-5 to 5e-5                                   │
-│  ├── Warmup steps: 500-2000                                        │
-│  ├── Batch size: 8-32 (with gradient accumulation)                 │
-│  └── Epochs: 2-5 for fine-tuning                                   │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-```
+| Model | Key Parameters | Typical Values |
+|-------|----------------|----------------|
+| Neural Networks | Learning rate | 1e-4 to 1e-2 |
+| | Batch size | 32, 64, 128, 256 |
+| | Dropout | 0.1 to 0.5 |
+| Random Forest | n_estimators | 100-1000 |
+| | max_depth | None or 10-50 |
+| XGBoost | learning_rate | 0.01-0.3 |
+| | max_depth | 3-10 |
 
-## Evaluation Metrics Reference
+## Evaluation Metrics Guide
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                EVALUATION METRICS                                   │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│  CLASSIFICATION                                                     │
-│  ├── Accuracy: (TP+TN)/(TP+TN+FP+FN) - balanced classes           │
-│  ├── Precision: TP/(TP+FP) - minimize false positives             │
-│  ├── Recall: TP/(TP+FN) - minimize false negatives                │
-│  ├── F1: 2*P*R/(P+R) - balanced P/R                               │
-│  ├── AUC-ROC: Ranking ability                                      │
-│  └── Log Loss: Probability calibration                             │
-│                                                                     │
-│  REGRESSION                                                         │
-│  ├── MSE: Mean squared error - penalizes large errors             │
-│  ├── RMSE: Root MSE - same units as target                        │
-│  ├── MAE: Mean absolute error - robust to outliers                │
-│  ├── MAPE: Percentage error                                        │
-│  └── R²: Variance explained                                        │
-│                                                                     │
-│  RANKING                                                            │
-│  ├── MRR: Mean reciprocal rank                                     │
-│  ├── NDCG: Normalized discounted cumulative gain                   │
-│  └── MAP: Mean average precision                                   │
-│                                                                     │
-│  CLUSTERING                                                         │
-│  ├── Silhouette: Cluster separation                                │
-│  ├── Davies-Bouldin: Cluster compactness                           │
-│  └── ARI: Agreement with true labels                               │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-```
-
-## Common Debugging Checklist
-
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                DEBUGGING CHECKLIST                                  │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│  MODEL NOT LEARNING:                                                │
-│  □ Check data loading (inspect a batch)                            │
-│  □ Verify labels are correct                                       │
-│  □ Check for NaN in inputs/outputs                                 │
-│  □ Try simpler model first                                         │
-│  □ Reduce learning rate                                            │
-│  □ Check loss function matches task                                │
-│                                                                     │
-│  OVERFITTING:                                                       │
-│  □ Add regularization (dropout, weight decay)                      │
-│  □ Reduce model complexity                                         │
-│  □ Get more training data                                          │
-│  □ Add data augmentation                                           │
-│  □ Use early stopping                                              │
-│                                                                     │
-│  UNDERFITTING:                                                      │
-│  □ Increase model capacity                                         │
-│  □ Train longer                                                    │
-│  □ Reduce regularization                                           │
-│  □ Engineer better features                                        │
-│  □ Check for data quality issues                                   │
-│                                                                     │
-│  TRAINING INSTABILITY:                                              │
-│  □ Gradient clipping                                               │
-│  □ Reduce learning rate                                            │
-│  □ Add batch/layer normalization                                   │
-│  □ Check for exploding gradients                                   │
-│  □ Use warmup schedule                                             │
-│                                                                     │
-│  MEMORY ISSUES:                                                     │
-│  □ Reduce batch size                                               │
-│  □ Use gradient checkpointing                                      │
-│  □ Mixed precision training                                        │
-│  □ Model parallelism                                               │
-│  □ Gradient accumulation                                           │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-```
+| Task | Primary Metric | When to Use |
+|------|----------------|-------------|
+| Binary Classification | AUC-ROC | Balanced classes |
+| | F1 Score | Imbalanced classes |
+| Multi-class | Accuracy | Balanced |
+| | Macro F1 | Imbalanced |
+| Regression | RMSE | General use |
+| | MAE | Robust to outliers |
+| Ranking | NDCG | Recommendations |
 
 ---
 
-# FINAL SUMMARY
-
-## Key Takeaways
-
-### 1. Machine Learning Fundamentals
-- ML is about learning patterns from data
-- Choose the right algorithm for your problem type
-- Always split data: train, validation, test
-- Cross-validation for robust evaluation
-
-### 2. Data is King
-- Garbage in, garbage out
-- Exploratory data analysis is essential
-- Feature engineering often beats model tuning
-- Handle missing data and outliers properly
-
-### 3. Model Selection
-- Start simple, add complexity as needed
-- Tree-based models often work best for tabular data
-- Deep learning shines with images, text, sequences
-- Ensemble methods are powerful
-
-### 4. Training
-- Use appropriate optimizers (Adam is a safe default)
-- Learning rate is the most important hyperparameter
-- Regularization prevents overfitting
-- Monitor both training and validation metrics
-
-### 5. Evaluation
-- Use metrics appropriate for your problem
-- Don't optimize the wrong metric
-- Test on held-out data
-- Analyze errors and failure cases
-
-### 6. Production
-- Reproducibility is crucial
-- Monitor model performance in production
-- Plan for model updates
-- Consider fairness and privacy
-
-### 7. Keep Learning
-- The field moves fast
-- Read papers and blogs
-- Practice with real projects
-- Join communities and competitions
+*Let's begin our journey into Machine Learning!*
 
 ---
 
-## Recommended Learning Path
+---
 
+# PART I: FOUNDATIONS
+
+---
+
+# Chapter 1: Introduction to Machine Learning
+
+> *"A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E."*
+> 
+> — Tom Mitchell, 1997
+
+---
+
+## 1.1 What is Machine Learning?
+
+Machine Learning (ML) is a subset of Artificial Intelligence that enables computers to learn patterns from data without being explicitly programmed for every possible scenario.
+
+**The Key Insight:** Instead of writing rules for every situation, we show the computer examples and let it figure out the rules itself.
+
+### Traditional Programming vs Machine Learning
+
+**Traditional Programming:**
 ```
-BEGINNER (0-3 months):
-├── Python basics + NumPy/Pandas
-├── Statistics fundamentals
-├── Linear/Logistic Regression
-├── Decision Trees, Random Forest
-└── Projects: Titanic, House Prices
-
-INTERMEDIATE (3-12 months):
-├── Deep Learning fundamentals
-├── CNNs for computer vision
-├── RNNs/Transformers for NLP
-├── Gradient Boosting (XGBoost, LightGBM)
-└── Projects: Image classification, Sentiment analysis
-
-ADVANCED (1+ years):
-├── Read and implement papers
-├── Specialized domains (RL, GNNs, etc.)
-├── MLOps and production systems
-├── Foundation models and efficient fine-tuning
-└── Projects: Research, Kaggle competitions, Open source
-```
-
----
-
-## Resources
-
-### Books
-- "Deep Learning" by Goodfellow, Bengio, Courville
-- "Pattern Recognition and Machine Learning" by Bishop
-- "Hands-On Machine Learning" by Géron
-- "The Hundred-Page Machine Learning Book" by Burkov
-
-### Online Courses
-- Stanford CS229, CS231n, CS224n
-- fast.ai Practical Deep Learning
-- Coursera Machine Learning (Andrew Ng)
-- DeepLearning.AI Specializations
-
-### Practice
-- Kaggle competitions
-- UCI Machine Learning Repository
-- Papers with Code
-- Hugging Face datasets
-
-### Communities
-- Reddit: r/MachineLearning, r/learnmachinelearning
-- Twitter/X: ML researchers and practitioners
-- Discord: Various ML servers
-- Local meetups and conferences
-
----
-
-**Congratulations on completing this comprehensive ML textbook!**
-
-The journey of machine learning is continuous. Keep experimenting, keep learning, and most importantly, keep building. The best way to learn ML is by doing ML.
-
-Good luck on your machine learning journey! 🚀
-# ═══════════════════════════════════════════════════════════════════════════════
-# ███╗   ███╗ █████╗  ██████╗██╗  ██╗██╗███╗   ██╗███████╗                       
-# ████╗ ████║██╔══██╗██╔════╝██║  ██║██║████╗  ██║██╔════╝                       
-# ██╔████╔██║███████║██║     ███████║██║██╔██╗ ██║█████╗                         
-# ██║╚██╔╝██║██╔══██║██║     ██╔══██║██║██║╚██╗██║██╔══╝                         
-# ██║ ╚═╝ ██║██║  ██║╚██████╗██║  ██║██║██║ ╚████║███████╗                       
-# ╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝                       
-# ██╗     ███████╗ █████╗ ██████╗ ███╗   ██╗██╗███╗   ██╗ ██████╗               
-# ██║     ██╔════╝██╔══██╗██╔══██╗████╗  ██║██║████╗  ██║██╔════╝               
-# ██║     █████╗  ███████║██████╔╝██╔██╗ ██║██║██╔██╗ ██║██║  ███╗              
-# ██║     ██╔══╝  ██╔══██║██╔══██╗██║╚██╗██║██║██║╚██╗██║██║   ██║              
-# ███████╗███████╗██║  ██║██║  ██║██║ ╚████║██║██║ ╚████║╚██████╔╝              
-# ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ╚═════╝               
-# ═══════════════════════════════════════════════════════════════════════════════
-#
-#                    THE COMPLETE MACHINE LEARNING TEXTBOOK
-#                         From Zero to Production-Ready
-#
-#                              2025 Edition
-#
-# ═══════════════════════════════════════════════════════════════════════════════
-
-"""
-╔═══════════════════════════════════════════════════════════════════════════════╗
-║                                                                               ║
-║   This textbook is designed to take you from complete beginner to expert      ║
-║   in Machine Learning. Every concept is explained multiple ways, with         ║
-║   theory, intuition, mathematics, and practical code examples.                ║
-║                                                                               ║
-║   HOW TO USE THIS TEXTBOOK:                                                   ║
-║   ─────────────────────────────────────────────────────────────────────────   ║
-║   • Read sequentially for comprehensive learning                              ║
-║   • Use the table of contents to jump to specific topics                      ║
-║   • Run the code examples in your own environment                             ║
-║   • Complete the exercises at the end of each chapter                         ║
-║   • Use the cheat sheets for quick reference                                  ║
-║   • Return to troubleshooting sections when you hit issues                    ║
-║                                                                               ║
-║   PREREQUISITES:                                                              ║
-║   ─────────────────────────────────────────────────────────────────────────   ║
-║   • Basic Python programming knowledge                                        ║
-║   • High school mathematics (algebra, basic calculus helpful)                 ║
-║   • Curiosity and willingness to learn                                        ║
-║                                                                               ║
-╚═══════════════════════════════════════════════════════════════════════════════╝
-"""
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#                           TABLE OF CONTENTS
-# ═══════════════════════════════════════════════════════════════════════════════
-
-"""
-PART I: FOUNDATIONS
-═══════════════════════════════════════════════════════════════════════════════
-
-CHAPTER 1: INTRODUCTION TO MACHINE LEARNING
-    1.1  What is Machine Learning?
-    1.2  A Brief History of Machine Learning
-    1.3  Why Machine Learning Matters Today
-    1.4  Types of Machine Learning
-         1.4.1  Supervised Learning
-         1.4.2  Unsupervised Learning
-         1.4.3  Reinforcement Learning
-         1.4.4  Self-Supervised Learning
-         1.4.5  Semi-Supervised Learning
-    1.5  The Machine Learning Workflow
-    1.6  When to Use (and Not Use) Machine Learning
-    1.7  Setting Up Your ML Environment
-    1.8  Chapter Exercises
-    1.9  Chapter Summary
-
-CHAPTER 2: MATHEMATICS FOR MACHINE LEARNING
-    2.1  Linear Algebra Essentials
-         2.1.1  Scalars, Vectors, and Matrices
-         2.1.2  Matrix Operations
-         2.1.3  Eigenvalues and Eigenvectors
-         2.1.4  Matrix Decomposition
-    2.2  Calculus for ML
-         2.2.1  Derivatives and Gradients
-         2.2.2  Partial Derivatives
-         2.2.3  The Chain Rule
-         2.2.4  Gradient Descent Derivation
-    2.3  Probability and Statistics
-         2.3.1  Probability Basics
-         2.3.2  Random Variables and Distributions
-         2.3.3  Bayes' Theorem
-         2.3.4  Maximum Likelihood Estimation
-         2.3.5  Descriptive Statistics
-    2.4  Information Theory
-         2.4.1  Entropy
-         2.4.2  Cross-Entropy
-         2.4.3  KL Divergence
-    2.5  Chapter Exercises
-    2.6  Chapter Summary
-
-CHAPTER 3: DATA FUNDAMENTALS
-    3.1  Understanding Your Data
-         3.1.1  Data Types and Structures
-         3.1.2  Exploratory Data Analysis (EDA)
-         3.1.3  Data Visualization
-    3.2  Data Collection and Sources
-    3.3  Data Cleaning
-         3.3.1  Handling Missing Values
-         3.3.2  Dealing with Outliers
-         3.3.3  Data Validation
-    3.4  Feature Engineering
-         3.4.1  Feature Creation
-         3.4.2  Feature Transformation
-         3.4.3  Feature Selection
-    3.5  Data Preprocessing
-         3.5.1  Encoding Categorical Variables
-         3.5.2  Feature Scaling
-         3.5.3  Data Normalization
-    3.6  Train/Test Split Strategies
-    3.7  Chapter Exercises
-    3.8  Chapter Summary
-
-PART II: SUPERVISED LEARNING
-═══════════════════════════════════════════════════════════════════════════════
-
-CHAPTER 4: LINEAR MODELS
-    4.1  Linear Regression
-    4.2  Multiple Linear Regression
-    4.3  Polynomial Regression
-    4.4  Regularization (Ridge, Lasso, ElasticNet)
-    4.5  Logistic Regression
-    4.6  Softmax Regression
-    4.7  Chapter Exercises
-    4.8  Chapter Summary
-
-CHAPTER 5: TREE-BASED METHODS
-    5.1  Decision Trees
-    5.2  Random Forests
-    5.3  Gradient Boosting
-    5.4  XGBoost
-    5.5  LightGBM
-    5.6  CatBoost
-    5.7  Chapter Exercises
-    5.8  Chapter Summary
-
-CHAPTER 6: SUPPORT VECTOR MACHINES
-    6.1  Linear SVM
-    6.2  The Kernel Trick
-    6.3  SVM for Classification
-    6.4  SVM for Regression
-    6.5  Chapter Exercises
-    6.6  Chapter Summary
-
-CHAPTER 7: INSTANCE-BASED LEARNING
-    7.1  K-Nearest Neighbors
-    7.2  Distance Metrics
-    7.3  Weighted KNN
-    7.4  Chapter Exercises
-    7.5  Chapter Summary
-
-CHAPTER 8: PROBABILISTIC MODELS
-    8.1  Naive Bayes
-    8.2  Gaussian Naive Bayes
-    8.3  Multinomial Naive Bayes
-    8.4  Bayesian Networks
-    8.5  Chapter Exercises
-    8.6  Chapter Summary
-
-CHAPTER 9: MODEL EVALUATION AND SELECTION
-    9.1  Classification Metrics
-    9.2  Regression Metrics
-    9.3  Cross-Validation
-    9.4  Hyperparameter Tuning
-    9.5  Model Selection Strategies
-    9.6  Chapter Exercises
-    9.7  Chapter Summary
-
-PART III: NEURAL NETWORKS AND DEEP LEARNING
-═══════════════════════════════════════════════════════════════════════════════
-
-CHAPTER 10: NEURAL NETWORK FUNDAMENTALS
-    10.1  The Perceptron
-    10.2  Multi-Layer Perceptrons
-    10.3  Activation Functions
-    10.4  Forward Propagation
-    10.5  Backpropagation
-    10.6  Chapter Exercises
-    10.7  Chapter Summary
-
-CHAPTER 11: TRAINING NEURAL NETWORKS
-    11.1  Loss Functions
-    11.2  Optimizers
-    11.3  Learning Rate Scheduling
-    11.4  Batch Normalization
-    11.5  Regularization Techniques
-    11.6  Chapter Exercises
-    11.7  Chapter Summary
-
-CHAPTER 12: CONVOLUTIONAL NEURAL NETWORKS
-    12.1  Convolution Operations
-    12.2  Pooling Layers
-    12.3  CNN Architectures
-    12.4  Transfer Learning
-    12.5  Chapter Exercises
-    12.6  Chapter Summary
-
-CHAPTER 13: RECURRENT NEURAL NETWORKS
-    13.1  RNN Basics
-    13.2  LSTM Networks
-    13.3  GRU Networks
-    13.4  Bidirectional RNNs
-    13.5  Sequence-to-Sequence Models
-    13.6  Chapter Exercises
-    13.7  Chapter Summary
-
-CHAPTER 14: ATTENTION AND TRANSFORMERS
-    14.1  Attention Mechanisms
-    14.2  Self-Attention
-    14.3  The Transformer Architecture
-    14.4  BERT and GPT
-    14.5  Vision Transformers
-    14.6  Chapter Exercises
-    14.7  Chapter Summary
-
-PART IV: UNSUPERVISED LEARNING
-═══════════════════════════════════════════════════════════════════════════════
-
-CHAPTER 15: CLUSTERING
-    15.1  K-Means Clustering
-    15.2  Hierarchical Clustering
-    15.3  DBSCAN
-    15.4  Gaussian Mixture Models
-    15.5  Chapter Exercises
-    15.6  Chapter Summary
-
-CHAPTER 16: DIMENSIONALITY REDUCTION
-    16.1  Principal Component Analysis
-    16.2  t-SNE
-    16.3  UMAP
-    16.4  Autoencoders
-    16.5  Chapter Exercises
-    16.6  Chapter Summary
-
-CHAPTER 17: ANOMALY DETECTION
-    17.1  Statistical Methods
-    17.2  Isolation Forest
-    17.3  One-Class SVM
-    17.4  Autoencoder-Based Detection
-    17.5  Chapter Exercises
-    17.6  Chapter Summary
-
-PART V: SPECIALIZED DOMAINS
-═══════════════════════════════════════════════════════════════════════════════
-
-CHAPTER 18: NATURAL LANGUAGE PROCESSING
-    18.1  Text Preprocessing
-    18.2  Word Embeddings
-    18.3  Text Classification
-    18.4  Named Entity Recognition
-    18.5  Sentiment Analysis
-    18.6  Language Models
-    18.7  Chapter Exercises
-    18.8  Chapter Summary
-
-CHAPTER 19: TIME SERIES ANALYSIS
-    19.1  Time Series Fundamentals
-    19.2  Classical Methods (ARIMA)
-    19.3  Prophet
-    19.4  Deep Learning for Time Series
-    19.5  Chapter Exercises
-    19.6  Chapter Summary
-
-CHAPTER 20: COMPUTER VISION
-    20.1  Image Classification
-    20.2  Object Detection
-    20.3  Image Segmentation
-    20.4  Face Recognition
-    20.5  Chapter Exercises
-    20.6  Chapter Summary
-
-PART VI: PRODUCTION AND ETHICS
-═══════════════════════════════════════════════════════════════════════════════
-
-CHAPTER 21: MLOps AND DEPLOYMENT
-    21.1  Experiment Tracking
-    21.2  Model Versioning
-    21.3  Model Serving
-    21.4  Monitoring and Maintenance
-    21.5  Chapter Exercises
-    21.6  Chapter Summary
-
-CHAPTER 22: RESPONSIBLE AI
-    22.1  Fairness in ML
-    22.2  Explainability
-    22.3  Privacy
-    22.4  Security
-    22.5  Chapter Exercises
-    22.6  Chapter Summary
-
-APPENDICES
-═══════════════════════════════════════════════════════════════════════════════
-
-APPENDIX A: Python Refresher for ML
-APPENDIX B: NumPy Essentials
-APPENDIX C: Pandas Essentials
-APPENDIX D: Matplotlib and Visualization
-APPENDIX E: Common Errors and Solutions
-APPENDIX F: Interview Questions
-APPENDIX G: Glossary
-APPENDIX H: Cheat Sheets
-"""
-
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# ═══════════════════════════════════════════════════════════════════════════════
-#
-#                              PART I: FOUNDATIONS
-#
-# ═══════════════════════════════════════════════════════════════════════════════
-# ═══════════════════════════════════════════════════════════════════════════════
-
-
-# ███████████████████████████████████████████████████████████████████████████████
-#                                                                               
-#   CHAPTER 1: INTRODUCTION TO MACHINE LEARNING                                  
-#                                                                               
-# ███████████████████████████████████████████████████████████████████████████████
-
-"""
-╔═══════════════════════════════════════════════════════════════════════════════╗
-║                                                                               ║
-║   "A computer program is said to learn from experience E with respect to      ║
-║    some class of tasks T and performance measure P, if its performance at     ║
-║    tasks in T, as measured by P, improves with experience E."                 ║
-║                                                                               ║
-║                                              — Tom Mitchell, 1997             ║
-║                                                                               ║
-╚═══════════════════════════════════════════════════════════════════════════════╝
-"""
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# 1.1 WHAT IS MACHINE LEARNING?
-# ─────────────────────────────────────────────────────────────────────────────
-
-"""
-WHAT IS MACHINE LEARNING?
-═══════════════════════════════════════════════════════════════════════════════
-
-Machine Learning (ML) is a subset of Artificial Intelligence that enables 
-computers to learn patterns from data without being explicitly programmed 
-for every possible scenario.
-
-THE KEY INSIGHT:
-───────────────────────────────────────────────────────────────────────────────
-Instead of writing rules for every situation, we show the computer examples
-and let it figure out the rules itself.
-
-
-TRADITIONAL PROGRAMMING vs MACHINE LEARNING
-───────────────────────────────────────────────────────────────────────────────
-
-Traditional Programming:
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
 │                 │     │                 │     │                 │
 │      DATA       │────▶│     RULES       │────▶│     OUTPUT      │
 │                 │     │  (hand-coded)   │     │                 │
 └─────────────────┘     └─────────────────┘     └─────────────────┘
+```
 
-Machine Learning:
+**Machine Learning:**
+```
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
 │                 │     │                 │     │                 │
 │      DATA       │────▶│     MODEL       │────▶│     RULES       │
 │    + ANSWERS    │     │   (learning)    │     │   (discovered)  │
 └─────────────────┘     └─────────────────┘     └─────────────────┘
-
+```
 
 A CONCRETE EXAMPLE: SPAM DETECTION
 ───────────────────────────────────────────────────────────────────────────────
@@ -30017,3 +29473,7 @@ Thank you for reading this comprehensive textbook.
 Now go build something amazing! 🚀
 
 ---
+
+**END OF TEXTBOOK**
+
+*Total: 22 Parts | 88 Chapters | 30,000+ Lines | 150+ Code Examples*
