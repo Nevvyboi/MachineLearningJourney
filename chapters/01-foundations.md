@@ -79,7 +79,6 @@ Benefits:
 2. Adapts when retrained with new data
 3. Can be more accurate than hand-coded rules
 4. Scales to complex problems
-"""
 
 # Let's see both approaches in code:
 
@@ -205,176 +204,70 @@ def compare_approaches():
         print(f"Spam: {bool(prediction)} (confidence: {proba[prediction]:.1%})\n")
 
 
-# 1.2 A BRIEF HISTORY OF MACHINE LEARNING
+## 1.2 A Brief History of Machine Learning
 
-"""
-A BRIEF HISTORY OF MACHINE LEARNING
+### Timeline of Key Developments
 
-Timeline of Key Developments:
+| Year | Milestone | Significance |
+|:----:|:----------|:-------------|
+| **1943** | McCulloch & Pitts | First mathematical model of a neural network |
+| **1950** | Alan Turing | Proposed the Turing Test - "Can machines think?" |
+| **1957** | Frank Rosenblatt | The Perceptron - first trainable neural network |
+| **1967** | Nearest Neighbor | Simple but powerful instance-based learning |
+| **1969** | Minsky & Papert | "Perceptrons" book - caused first "AI Winter" |
+| **1979** | Stanford Cart | Early autonomous navigation system |
+| **1986** | Backpropagation | Made training deep networks possible |
+| **1995** | Random Forests, SVMs | Powerful algorithms still widely used |
+| **1997** | Deep Blue vs Kasparov | Major milestone for game-playing AI |
+| **1998** | MNIST, LeNet-5 | CNNs for digit recognition |
+| **2006** | Geoffrey Hinton | "Deep Learning" term, Deep Belief Networks |
+| **2009** | ImageNet | 14M+ labeled images enabled modern CV |
+| **2012** | AlexNet | Deep learning revolution begins (26%→16% error) |
+| **2014** | GANs | Generative Adversarial Networks (Goodfellow) |
+| **2015** | ResNet | 152 layers! Superhuman ImageNet performance |
+| **2016** | AlphaGo | Beats Lee Sedol - RL triumph |
+| **2017** | Transformers | "Attention Is All You Need" |
+| **2018** | BERT | Bidirectional pretraining revolutionizes NLP |
+| **2019** | GPT-2 | "Too dangerous to release" controversy |
+| **2020** | GPT-3 | 175B parameters, few-shot learning |
+| **2021** | DALL-E, Codex | Image & code generation |
+| **2022** | ChatGPT | AI goes mainstream |
+| **2023** | GPT-4, Claude | Multimodal capabilities |
+| **2024** | Open source boom | Llama 3, Mistral, Sora |
+| **2025** | Reasoning models | o1, R1, AI agents in production |
 
-1943 │ Warren McCulloch & Walter Pitts
-     │ First mathematical model of a neural network
-     │ Showed neurons could implement logical functions
-     │
-1950 │ Alan Turing
-     │ "Computing Machinery and Intelligence"
-     │ Proposed the Turing Test
-     │ Asked "Can machines think?"
-     │
-1957 │ Frank Rosenblatt
-     │ The Perceptron
-     │ First trainable neural network
-     │ Could learn to classify simple patterns
-     │
-1967 │ The Nearest Neighbor Algorithm
-     │ Simple but powerful instance-based learning
-     │ Still used today!
-     │
-1969 │ Minsky & Papert
-     │ "Perceptrons" book
-     │ Showed limitations of single-layer networks
-     │ Caused the first "AI Winter"
-     │
-1979 │ Stanford Cart
-     │ Successfully navigated a room of obstacles
-     │ Early example of autonomous systems
-     │
-1986 │ Backpropagation
-     │ Rumelhart, Hinton, Williams
-     │ Made training deep networks possible
-     │ Renaissance of neural networks
-     │
-1995 │ Random Forests (Tin Kam Ho)
-     │ Support Vector Machines (Cortes & Vapnik)
-     │ Powerful algorithms still widely used
-     │
-1997 │ IBM Deep Blue beats Kasparov
-     │ Major milestone for game-playing AI
-     │ (Though more search than learning)
-     │
-1998 │ MNIST dataset released
-     │ Yann LeCun's LeNet-5
-     │ Convolutional Neural Networks for digits
-     │
-2006 │ Geoffrey Hinton
-     │ "Deep Learning" term popularized
-     │ Deep Belief Networks breakthrough
-     │
-2009 │ ImageNet dataset created
-     │ 14+ million labeled images
-     │ Enabled modern computer vision
-     │
-2012 │ AlexNet wins ImageNet
-     │ Deep learning revolution begins
-     │ Error rate dropped from 26% to 16%
-     │ GPU training proves essential
-     │
-2014 │ GANs introduced (Goodfellow)
-     │ Generative Adversarial Networks
-     │ Generate realistic images
-     │
-2015 │ ResNet (152 layers!)
-     │ Residual connections enable very deep networks
-     │ Superhuman performance on ImageNet
-     │
-2016 │ AlphaGo beats Lee Sedol
-     │ Deep reinforcement learning triumph
-     │ Go was considered decades away
-     │
-2017 │ "Attention Is All You Need"
-     │ The Transformer architecture
-     │ Revolutionized NLP (and later, everything)
-     │
-2018 │ BERT (Google)
-     │ Bidirectional transformer pretraining
-     │ New state-of-the-art in NLP
-     │
-2019 │ GPT-2 (OpenAI)
-     │ Impressive text generation
-     │ "Too dangerous to release" controversy
-     │
-2020 │ GPT-3 (175B parameters)
-     │ Few-shot learning capabilities
-     │ AI assistants become practical
-     │
-2021 │ DALL-E, Codex
-     │ Image generation from text
-     │ Code generation capabilities
-     │
-2022 │ ChatGPT released
-     │ AI goes mainstream
-     │ Millions of users overnight
-     │ The "GPT moment"
-     │
-2023 │ GPT-4, Claude, Gemini
-     │ Multimodal capabilities
-     │ Reasoning improvements
-     │ AI becomes a tool for everyone
-     │
-2024 │ Open source catches up
-     │ Llama 3, Mistral, Mixtral
-     │ Video generation (Sora)
-     │ Agent capabilities emerge
-     │
-2025 │ Reasoning models (o1, R1)
-     │ Reinforcement learning from verifiable rewards
-     │ Mixture of Experts architectures
-     │ AI agents in production
+### The Three Waves of AI
 
+| Wave | Era | Characteristics |
+|:----:|:----|:----------------|
+| **1** | 1950s-1970s | Symbolic AI: Hand-coded rules, expert systems |
+| **2** | 1980s-2010s | Statistical ML: SVMs, Random Forests, feature engineering |
+| **3** | 2012-present | Deep Learning: End-to-end learning, minimal features |
 
-KEY INSIGHT: The Three Waves of AI
+---
 
-Wave 1 (1950s-1970s): Symbolic AI
-├── Hand-coded rules and logic
-├── Expert systems
-└── Limited by human knowledge
+## 1.3 Why Machine Learning Matters Today
 
-Wave 2 (1980s-2010s): Statistical ML
-├── Learning from data
-├── SVMs, Random Forests
-└── Limited by feature engineering
-
-Wave 3 (2012-present): Deep Learning
-├── End-to-end learning
-├── Minimal feature engineering
-└── Enabled by data + compute + algorithms
-"""
-
-
-# 1.3 WHY MACHINE LEARNING MATTERS TODAY
-
-"""
-WHY MACHINE LEARNING MATTERS TODAY
-
-THE PERFECT STORM: Why ML Exploded in the 2010s
+### The Perfect Storm: Why ML Exploded in the 2010s
 
 Three factors converged to enable the deep learning revolution:
 
-1. DATA EXPLOSION
-   ┌──────────────────────────────────────────────────────────────────────┐
-   │ • Internet generates exabytes of data daily                         │
-   │ • Social media provides labeled data (likes, shares, comments)      │
-   │ • Smartphones = sensors everywhere                                   │
-   │ • Digitization of historical records                                │
-   │ • IoT devices creating continuous data streams                      │
-   └──────────────────────────────────────────────────────────────────────┘
+**1. Data Explosion**
+- Internet generates exabytes of data daily
+- Social media provides labeled data (likes, shares, comments)
+- Smartphones = sensors everywhere
+- IoT devices creating continuous data streams
 
-2. COMPUTE POWER
-   ┌──────────────────────────────────────────────────────────────────────┐
-   │ • GPUs: 100x faster than CPUs for matrix operations                 │
-   │ • Cloud computing: Rent massive compute on demand                   │
-   │ • Specialized chips: TPUs, Neural engines                           │
-   │ • Moore's Law (until recently)                                      │
-   └──────────────────────────────────────────────────────────────────────┘
+**2. Compute Power**
+- GPUs: 100x faster than CPUs for matrix operations
+- Cloud computing: Rent massive compute on demand
+- Specialized chips: TPUs, Neural engines
 
-3. ALGORITHMIC ADVANCES
-   ┌──────────────────────────────────────────────────────────────────────┐
-   │ • Dropout, BatchNorm: Better training stability                     │
-   │ • ReLU: Solved vanishing gradient problem                           │
-   │ • Residual connections: Enabled very deep networks                  │
-   │ • Transformers: Parallelizable attention                            │
-   │ • Better optimizers: Adam, AdamW                                    │
-   └──────────────────────────────────────────────────────────────────────┘
+**3. Algorithmic Advances**
+- Dropout, BatchNorm: Better training stability
+- ReLU: Solved vanishing gradient problem
+- Residual connections: Enabled very deep networks
+- Transformers: Parallelizable attention
 
 
 ML IS EVERYWHERE: Real-World Applications
@@ -458,12 +351,10 @@ Job market implications:
 • ML Engineer salaries: $150K-$500K+ at top companies
 • Demand far exceeds supply of qualified practitioners
 • Every industry seeking ML expertise
-"""
 
 
 # 1.4 TYPES OF MACHINE LEARNING
 
-"""
 TYPES OF MACHINE LEARNING
 
 Machine Learning algorithms are typically categorized by how they learn:
@@ -494,12 +385,10 @@ Additional paradigms:
 ├── Self-Supervised Learning: Create labels from data itself
 ├── Semi-Supervised Learning: Some labels, mostly unlabeled
 └── Transfer Learning: Apply knowledge from one task to another
-"""
 
 
 # 1.4.1 SUPERVISED LEARNING - Detailed Explanation
 
-"""
 SUPERVISED LEARNING
 
 Definition: Learning from labeled examples where both inputs (X) and 
@@ -578,7 +467,6 @@ For Regression:
 ├── Gradient Boosting
 ├── Support Vector Regression
 └── Neural Networks
-"""
 
 # EXAMPLE 1.2: Supervised Learning - Classification
 
@@ -862,7 +750,6 @@ def supervised_regression_example():
 
 # 1.4.2 UNSUPERVISED LEARNING - Detailed Explanation
 
-"""
 UNSUPERVISED LEARNING
 
 Definition: Learning patterns from data WITHOUT labeled examples.
@@ -950,7 +837,6 @@ MAIN TASKS IN UNSUPERVISED LEARNING:
    Algorithms:
    • Apriori
    • FP-Growth
-"""
 
 # EXAMPLE 1.4: Unsupervised Learning - Clustering
 
@@ -1068,7 +954,6 @@ def unsupervised_clustering_example():
 
 # 1.4.3 REINFORCEMENT LEARNING - Detailed Explanation
 
-"""
 REINFORCEMENT LEARNING
 
 Definition: Learning through trial and error by receiving rewards or penalties
@@ -1162,7 +1047,6 @@ Science:
 • Molecule design
 • Experiment optimization
 • Chip design (AlphaChip)
-"""
 
 # EXAMPLE 1.5: Simple Reinforcement Learning
 
@@ -1330,7 +1214,6 @@ def simple_rl_example():
 
 # 1.4.4 SELF-SUPERVISED LEARNING - Detailed Explanation
 
-"""
 SELF-SUPERVISED LEARNING
 
 Definition: A form of unsupervised learning where the data provides its own
@@ -1440,7 +1323,6 @@ To predict masked words well, a model must learn:
 • Reasoning abilities
 
 These learned representations transfer to many downstream tasks!
-"""
 
 # EXAMPLE 1.6: Self-Supervised Learning Concept
 
@@ -1560,7 +1442,6 @@ def self_supervised_concept_example():
 
 # 1.4.5 SEMI-SUPERVISED LEARNING
 
-"""
 SEMI-SUPERVISED LEARNING
 
 Definition: Learning from a combination of labeled and unlabeled data.
@@ -1638,12 +1519,10 @@ Approach:
 4. Add these "pseudo-labeled" images to training set
 5. Retrain model
 6. Result: Better model using all 101,000 images
-"""
 
 
 # 1.5 THE MACHINE LEARNING WORKFLOW
 
-"""
 THE MACHINE LEARNING WORKFLOW
 
 A complete ML project follows this pipeline:
@@ -1796,7 +1675,6 @@ DETAILED BREAKDOWN:
     • Performance degradation
     • New data available
     • Business requirements change
-"""
 
 
 # EXAMPLE 1.7: Complete ML Workflow
@@ -2066,7 +1944,6 @@ def complete_ml_workflow_example():
 
 # 1.6 WHEN TO USE (AND NOT USE) MACHINE LEARNING
 
-"""
 WHEN TO USE (AND NOT USE) MACHINE LEARNING
 
 ML is powerful, but it's not always the right solution.
@@ -2184,12 +2061,10 @@ MAYBE USE ML:
 • Credit decisions (regulated, but patterns exist)
 • Medical diagnosis (high stakes, but AI can assist humans)
 • Self-driving cars (complex, but safety-critical)
-"""
 
 
 # 1.7 SETTING UP YOUR ML ENVIRONMENT
 
-"""
 SETTING UP YOUR ML ENVIRONMENT
 
 This section covers how to set up a professional ML development environment.
@@ -2371,12 +2246,10 @@ Mac with Apple Silicon:
 • Use PyTorch with MPS (Metal Performance Shaders)
 • pip install torch torchvision torchaudio
 • device = "mps" if torch.backends.mps.is_available() else "cpu"
-"""
 
 
 # 1.8 CHAPTER 1 EXERCISES
 
-"""
 CHAPTER 1 EXERCISES
 
 EXERCISE 1.1: Identify ML Type
@@ -2467,7 +2340,6 @@ d) Classification (one of 10 classes)
 e) Classification (up or down)
 f) Regression (continuous price)
 g) Classification (one of multiple types)
-"""
 
 
 # EXERCISE 1.4 SOLUTION
@@ -2528,7 +2400,6 @@ def exercise_1_4_solution():
 
 # 1.9 CHAPTER 1 SUMMARY
 
-"""
 CHAPTER 1 SUMMARY
 
 KEY TAKEAWAYS:
@@ -2586,14 +2457,12 @@ In Chapter 2, we'll cover the mathematical foundations of ML:
 • Information theory
 
 This math forms the backbone of all ML algorithms!
-"""
 
 
 # End of Chapter 1
 
 #   CHAPTER 2: MATHEMATICS FOR MACHINE LEARNING                                  
 
-"""
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║                                                                               ║
 ║   "The book of nature is written in the language of mathematics."             ║
@@ -2603,14 +2472,12 @@ This math forms the backbone of all ML algorithms!
 ║   intuitively, with code examples you can run to see the concepts in action.  ║
 ║                                                                               ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
-"""
 
 import numpy as np
 from scipy import stats
 
 # 2.1 LINEAR ALGEBRA ESSENTIALS
 
-"""
 LINEAR ALGEBRA ESSENTIALS
 
 Linear algebra is the foundation of machine learning. Every ML algorithm
@@ -2654,7 +2521,6 @@ TENSORS: Generalization to any number of dimensions
          • Vector: 1D tensor
          • Matrix: 2D tensor
          • 3D tensor: Stack of matrices (e.g., color image)
-"""
 
 # EXAMPLE 2.1: Creating Scalars, Vectors, and Matrices
 
@@ -2759,7 +2625,6 @@ def example_matrix_operations():
 
 # EIGENVALUES AND EIGENVECTORS
 
-"""
 EIGENVALUES AND EIGENVECTORS
 
 For a square matrix A, an eigenvector v and eigenvalue λ satisfy:
@@ -2772,7 +2637,6 @@ WHY THEY MATTER IN ML:
 • PCA: Eigenvectors of covariance matrix are principal components
 • Spectral Clustering: Uses eigenvectors of graph Laplacian
 • Understanding matrix transformations
-"""
 
 def example_eigenvalues():
     """Demonstrate eigenvalues and eigenvectors."""
@@ -2798,14 +2662,12 @@ def example_eigenvalues():
 
 # SINGULAR VALUE DECOMPOSITION (SVD)
 
-"""
 SVD decomposes any matrix A into: A = U @ Σ @ V^T
 
 Uses in ML:
 • PCA (dimensionality reduction)
 • Matrix completion (recommendations)
 • Image compression
-"""
 
 def example_svd():
     """Demonstrate SVD and low-rank approximation."""
@@ -2828,7 +2690,6 @@ def example_svd():
 
 # 2.2 CALCULUS FOR MACHINE LEARNING
 
-"""
 CALCULUS FOR MACHINE LEARNING
 
 KEY INSIGHT: To minimize a loss function, we need to know which direction
@@ -2851,7 +2712,6 @@ When f depends on multiple variables:
 ∇f(x) = [∂f/∂x₁, ∂f/∂x₂, ..., ∂f/∂xₙ]
 
 The gradient points in the direction of steepest increase.
-"""
 
 def example_derivatives_gradients():
     """Demonstrate derivatives and gradients."""
@@ -2896,7 +2756,6 @@ def example_derivatives_gradients():
 
 # THE CHAIN RULE
 
-"""
 THE CHAIN RULE
 
 If y = f(g(x)), then:
@@ -2911,7 +2770,6 @@ Output:  y  = f₃(W₃ @ h₂ + b₃)
 
 To find ∂Loss/∂W₁, we use the chain rule repeatedly.
 This is called BACKPROPAGATION!
-"""
 
 def example_chain_rule():
     """Demonstrate the chain rule with a neural network example."""
@@ -2956,7 +2814,6 @@ def example_chain_rule():
 
 # GRADIENT DESCENT
 
-"""
 GRADIENT DESCENT
 
 THE ALGORITHM:
@@ -2977,7 +2834,6 @@ VARIANTS:
 • Batch GD: Gradient over ALL examples (stable but slow)
 • SGD: Gradient on ONE example (fast but noisy)
 • Mini-batch: Gradient on small batch (best of both)
-"""
 
 def example_gradient_descent():
     """Complete gradient descent implementation."""
@@ -3050,7 +2906,6 @@ def example_gradient_descent_linear_regression():
 
 # 2.3 PROBABILITY AND STATISTICS
 
-"""
 PROBABILITY AND STATISTICS
 
 ML is fundamentally about learning from uncertain data.
@@ -3070,7 +2925,6 @@ COMMON DISTRIBUTIONS:
 • Binomial: Number of successes in n trials
 • Normal: The bell curve (everywhere in ML!)
 • Poisson: Count of events in fixed interval
-"""
 
 def example_probability_basics():
     """Demonstrate probability concepts."""
@@ -3108,7 +2962,6 @@ def example_probability_basics():
 
 # BAYES' THEOREM
 
-"""
 BAYES' THEOREM
 
               P(B|A) × P(A)
@@ -3120,7 +2973,6 @@ TERMINOLOGY:
 • P(B|A)  = Likelihood: Probability of evidence if A is true
 • P(A|B)  = Posterior: Updated belief after seeing evidence
 • P(B)    = Evidence: Overall probability of observation
-"""
 
 def example_bayes_theorem():
     """Demonstrate Bayes' theorem."""
@@ -3152,7 +3004,6 @@ def example_bayes_theorem():
 
 # MAXIMUM LIKELIHOOD ESTIMATION
 
-"""
 MAXIMUM LIKELIHOOD ESTIMATION (MLE)
 
 Find parameters θ that maximize the probability of observed data:
@@ -3161,7 +3012,6 @@ Find parameters θ that maximize the probability of observed data:
 CONNECTION TO ML:
 • MSE Loss = MLE with Gaussian noise assumption
 • Cross-Entropy = MLE with Bernoulli/Categorical distribution
-"""
 
 def example_mle():
     """Demonstrate Maximum Likelihood Estimation."""
@@ -3213,7 +3063,6 @@ def example_descriptive_statistics():
 
 # 2.4 INFORMATION THEORY
 
-"""
 INFORMATION THEORY
 
 ENTROPY: Measures uncertainty in a random variable
@@ -3229,7 +3078,6 @@ This is THE loss function for classification!
 
 KL DIVERGENCE: Measures how Q differs from P
     D_KL(P || Q) = H(P, Q) - H(P)
-"""
 
 def example_entropy():
     """Demonstrate entropy."""
@@ -3299,7 +3147,6 @@ def example_kl_divergence():
 
 # CHAPTER 2 SUMMARY
 
-"""
 CHAPTER 2 SUMMARY
 
 LINEAR ALGEBRA:
@@ -3329,7 +3176,6 @@ Gradient Descent:    θ = θ - α × ∇L(θ)
 Bayes' Theorem:      P(A|B) = P(B|A)P(A) / P(B)
 Entropy:             H(X) = -Σ P(x) log P(x)
 Cross-Entropy:       H(P,Q) = -Σ P(x) log Q(x)
-"""
 
 # Run all examples
 
@@ -3366,7 +3212,6 @@ if __name__ == "__main__":
     example_kl_divergence()
 #   CHAPTER 3: DATA FUNDAMENTALS                                                 
 
-"""
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║                                                                               ║
 ║   "Data is the new oil. But like oil, it's valuable only when refined."       ║
@@ -3376,7 +3221,6 @@ if __name__ == "__main__":
 ║   Master this chapter, and you'll be ahead of most practitioners.             ║
 ║                                                                               ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
-"""
 
 import numpy as np
 import pandas as pd
@@ -3389,7 +3233,6 @@ warnings.filterwarnings('ignore')
 
 # 3.1 UNDERSTANDING YOUR DATA
 
-"""
 UNDERSTANDING YOUR DATA
 
 Before building models, you MUST understand your data thoroughly.
@@ -3428,12 +3271,10 @@ IMAGES: 3D tensors (height × width × channels)
 TEXT: Sequences of tokens
 TIME SERIES: Sequences with temporal ordering
 GRAPHS: Nodes and edges
-"""
 
 
 # 3.1.1 EXPLORATORY DATA ANALYSIS (EDA)
 
-"""
 EXPLORATORY DATA ANALYSIS (EDA)
 
 EDA is the process of investigating data to discover patterns, spot anomalies,
@@ -3449,7 +3290,6 @@ THE EDA CHECKLIST:
 □ Class distribution (for classification)
 □ Outliers
 □ Duplicate rows
-"""
 
 def create_sample_dataset():
     """Create a realistic sample dataset for demonstration."""
@@ -3670,7 +3510,6 @@ def example_eda_comprehensive():
 
 # 3.2 DATA CLEANING
 
-"""
 DATA CLEANING
 
 Real-world data is messy. Data cleaning transforms raw data into a format
@@ -3683,12 +3522,10 @@ COMMON DATA QUALITY ISSUES:
 • Invalid values (negative age, impossible dates)
 • Outliers
 • Data entry errors
-"""
 
 
 # 3.2.1 HANDLING MISSING VALUES
 
-"""
 HANDLING MISSING VALUES
 
 Missing values can be:
@@ -3722,7 +3559,6 @@ STRATEGIES:
 3. INDICATOR VARIABLE
    Create a binary column indicating missingness
    (Can capture "missingness as information")
-"""
 
 def example_handling_missing_values():
     """Demonstrate different methods for handling missing values."""
@@ -3861,7 +3697,6 @@ def example_handling_missing_values():
 
 # 3.2.2 DEALING WITH OUTLIERS
 
-"""
 DEALING WITH OUTLIERS
 
 Outliers are data points that differ significantly from other observations.
@@ -3884,7 +3719,6 @@ HANDLING STRATEGIES:
 • Transform data (log, Box-Cox)
 • Keep outliers (if they're real)
 • Use robust models
-"""
 
 def example_outlier_detection():
     """Demonstrate outlier detection methods."""
@@ -3988,7 +3822,6 @@ def example_outlier_detection():
 
 # 3.3 FEATURE ENGINEERING
 
-"""
 FEATURE ENGINEERING
 
 Feature engineering is the process of creating new features from existing ones
@@ -3997,7 +3830,6 @@ to improve model performance. Often the most impactful part of ML work.
 "Coming up with features is difficult, time-consuming, requires expert 
 knowledge. 'Applied machine learning' is basically feature engineering."
                                         — Andrew Ng
-"""
 
 
 # 3.3.1 FEATURE CREATION
@@ -4154,11 +3986,9 @@ def example_feature_creation():
 
 # 3.4 DATA PREPROCESSING
 
-"""
 DATA PREPROCESSING
 
 Preprocessing transforms raw features into a format suitable for ML algorithms.
-"""
 
 
 # 3.4.1 ENCODING CATEGORICAL VARIABLES
@@ -4560,7 +4390,6 @@ def example_train_test_split():
 
 # 3.6 CHAPTER 3 SUMMARY
 
-"""
 CHAPTER 3 SUMMARY
 
 KEY TAKEAWAYS:
@@ -4613,7 +4442,6 @@ DATA PREPROCESSING CHECKLIST:
 □ Scaled numerical features
 □ Split data properly (with stratification if needed)
 □ No data leakage (fit on train only)
-"""
 
 # Run all examples
 
