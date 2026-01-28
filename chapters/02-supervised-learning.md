@@ -5895,7 +5895,7 @@ class TfidfVectorizer:
         # L2 normalize
         norms = np.linalg.norm(vectors, axis=1, keepdims=True)
         norms[norms == 0] = 1
-
+```
 ---
 
 <div align="center">
